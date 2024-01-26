@@ -1,0 +1,60 @@
+\documentclass[../main.tex]{subfiles}
+% Prevent LaTeX from moving figures before a section.
+% Generally not best practice, but for this appendix it's necessary.
+\usepackage[section]{placeins}
+
+\begin{document}
+\newcommand{\plot}[3]{%
+\begin{figure}[ht]%
+    \centering%
+    \includegraphics[width=0.7\textwidth]{figures/plots/#1.pdf}%
+    \caption{#3}%
+    \label{#2}%
+\end{figure}%
+}%
+
+\vspace{-1.15cm}
+\chapter{Plots}
+\label{cha:plots}
+
+\vspace{-1.4cm}
+\section{Best accuracies per model}
+\plot{best_acc_per_dataset/main_dataset}{fig:plot_best_acc_per_dataset_main}{Best models, by accuracy, trained on Main}
+\plot{best_acc_per_dataset/k3p_dataset}{fig:plot_best_acc_per_dataset_k3p}{Best models, by accuracy, trained on K3P}
+\plot{best_acc_per_dataset/g213_dataset}{fig:plot_best_acc_per_dataset_g213}{Best models, by accuracy, trained on G213}
+\plot{best_acc_per_dataset/matebook14_dataset}{fig:plot_best_acc_per_dataset_matebook14}{Best models, by accuracy, trained on MateBook14}
+\plot{best_acc_per_dataset/CA_tb14_dataset}{fig:plot_best_acc_per_dataset_CA_tb14}{Best models, by accuracy, trained on CA\_tb14}
+\plot{best_acc_per_dataset/all_dataset}{fig:plot_best_acc_per_dataset_all}{Best models, by accuracy, trained on All}
+
+\clearpage
+
+\section{Best performances per (train, test) pair}
+\plot{dataset_performances/knn_1}{fig:plot_dataset_performance_knn1}{Best results of 1-NN on datasets}
+\plot{dataset_performances/logistic_regression}{fig:plot_dataset_performance_lr}{Best results of Logistic Regression on datasets}
+\plot{dataset_performances/naive_bayes}{fig:plot_dataset_performanceodel_nb}{Best results of Naive Bayes on datasets}
+\plot{dataset_performances/rnn}{fig:plot_dataset_performance_rnn}{Best results of RNN on datasets}
+\plot{dataset_performances/svm}{fig:plot_dataset_performance_svm}{Best results of SVM on datasets}
+\plot{dataset_performances/xgboost}{fig:plot_dataset_performance_xgb}{Best results of XGBoost on datasets}
+
+\clearpage
+
+\section{Model comparisons}
+\plot{model_comparison/on_main_dataset}{fig:plot_model_comparison_main}{Model comparison: Main (thr)}
+\plot{model_comparison/on_k3p_dataset}{fig:plot_model_comparison_k3p}{Model comparison: K3P (thr)}
+\plot{model_comparison/on_g213_dataset}{fig:plot_model_comparison_g213}{Model comparison: G213 (thr)}
+\plot{model_comparison/on_matebook14_dataset}{fig:plot_model_comparison_matebook14}{Model comparison: MateBook14 (thr)}
+\plot{model_comparison/on_CA_tb14_dataset}{fig:plot_model_comparison_CA_tb14}{Model comparison: CA\_tb14 (thr)}
+\plot{model_comparison/on_all_dataset}{fig:plot_model_comparison_all}{Model comparison: All (thr)}
+
+\clearpage
+
+\section{Model summaries}
+\plot{model_summary/knn_1}{fig:plot_model_summary_knn1}{Accuracies of 1-NN on datasets}
+\plot{model_summary/logistic_regression}{fig:plot_model_summary_lr}{Accuracies of Logistic Regression on datasets}
+\plot{model_summary/naive_bayes}{fig:plot_model_nb}{Accuracies of Naive Bayes on datasets}
+\plot{model_summary/rnn}{fig:plot_model_summary_rnn}{Accuracies of RNN on datasets}
+\plot{model_summary/svm}{fig:plot_model_summary_svm}{Accuracies of SVM on datasets}
+\plot{model_summary/xgboost}{fig:plot_model_summary_xgb}{Accuracies of XGBoost on datasets}
+
+\let\plot\undefined
+\end{document}

@@ -1,0 +1,8 @@
+[flake8]
+# E203: whitespace before ':'
+# E241: multiple spaces after ':'
+# E401: multiple imports on one line
+# E402: module level import not at top of file
+# E501: line too long
+# E741: ambiguous variable names
+ignore= E203,E241,E401,E402,E501,E741

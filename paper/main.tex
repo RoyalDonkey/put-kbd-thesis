@@ -1,0 +1,109 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Bachelor's & Master's Thesis Template        %%
+%% Copyleft by Dawid Weiss & Marta Szachniuk    %%
+%% Faculty of Computing and Telecommunication   %%
+%% Poznan University of Technology, 2020        %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[bachelor,a4paper,oneside]{ppfcmthesis}
+
+\usepackage{subfiles}
+\usepackage[quiet]{fontspec}
+\usepackage{geometry}
+\usepackage{multirow, multicol}
+\usepackage{amssymb} 
+\usepackage{longtable}
+\usepackage{siunitx}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{xifthen}
+\usepackage[backend=biber]{biblatex}
+\usepackage{soundoftyping}
+\addbibresource{references.bib}
+
+\graphicspath{ {./figures/} }
+
+\author{%
+   Marcin Gólski \album{148262}%
+   \and Piotr Kaszubski \album{148283}%
+   \and Bartłomiej Woroch \album{148277}%
+}
+\authortitle{}  % Do not change.
+
+\title{The sound of typing: using Machine Learning to classify Keyboard Acoustic Emanations}
+\ppsupervisor{Miłosz Kadziński, Ph.D., HDR, Assoc. Prof.}
+
+% Year of final submission (not graduation!)
+\ppyear{2024}
+
+\begin{document}
+
+% Front matter starts here
+\frontmatter\pagestyle{empty}%
+\maketitle\cleardoublepage%
+
+%--------------------------------------
+% Diploma card
+%--------------------------------------
+
+% Commented out after discussing the issue with the Dean's Office
+% \thispagestyle{empty}\vspace*{\fill}%
+% \begin{center}Tutaj będzie karta pracy dyplomowej;\\oryginał wstawiamy do
+% wersji dla archiwum PP, w pozostałych kopiach wstawiamy ksero.\end{center}%
+% \vfill\cleardoublepage%
+
+%--------------------------------------
+% Table of Contents
+%--------------------------------------
+
+\pagenumbering{Roman}\pagestyle{ppfcmthesis}%
+\tableofcontents*
+\cleardoublepage % Begin with odd page number
+
+%--------------------------------------
+% Chapters
+%--------------------------------------
+
+\begin{abstract}    
+% topic
+% methods
+% significance
+
+%OK checked 
+\noindent Vast volumes of private information are typed on keyboards every day. Methods of their secure storage and transport are deeply researched, but side-channel attacks offer ways to procure this data. Keyboard acoustic emanations pose a particular threat, given the accessibility and ubiquity of microphones. This thesis explores the impacts of numerous factors on the effectiveness of eavesdropping on the sounds of typing via conducting experiments using six supervised learning models over a multitude of test cases. The studied models are k-Nearest Neighbors classifiers, Logistic Regression models, Gaussian Naive Bayes, Recurrent Neural Networks, Support Vector Machines, and Gradient-Boosted Trees. They are tested on different fragments of keystroke sounds from recordings captured across four keyboards and three microphones and with three preprocessing techniques. The highest accuracies obtained are in the 88\% range, comparable to methods in other works. The applicability of the tested approaches is confirmed, and insights into the problem of attacking keyboard acoustic emanations are revealed.
+
+\end{abstract}
+
+\mainmatter%
+\subfile{chapters/01-introduction.tex}
+\subfile{chapters/02-literature-review.tex}
+\subfile{chapters/03-dataset.tex}
+\subfile{chapters/04-models.tex}
+\subfile{chapters/05-results.tex}
+\subfile{chapters/06-conclusions.tex}
+
+%--------------------------------------
+% References
+%--------------------------------------
+
+\printbibliography[title=References]
+% \bibliographystyle{plain}{\raggedright\sloppy\small\bibliography{References}}
+
+%--------------------------------------
+% Appendices
+%--------------------------------------
+
+\cleardoublepage\appendix%
+\newpage
+\subfile{chapters/07-appendix-a.tex}
+\subfile{chapters/08-appendix-b.tex}
+
+%--------------------------------------
+% Copyright information
+%--------------------------------------
+
+\ppcolophon
+
+\end{document}

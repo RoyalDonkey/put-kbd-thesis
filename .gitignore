@@ -1,0 +1,8 @@
+__pycache__/
+.ccls-cache/
+.ipynb_checkpoints/
+.mypy_cache/
+
+*.o
+a.out
+target

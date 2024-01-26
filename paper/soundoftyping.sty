@@ -1,0 +1,24 @@
+% Sound of Typing -- our custom definitions
+% 
+% (c) 2023  Marcin Gólski, Piotr Kaszubski, Bartłomiej Woroch
+%
+% See LICENSE.
+
+\NeedsTeXFormat{LaTeX2e}[1994/06/01]
+\ProvidesPackage{soundoftyping}
+  [2023/11/29 v0.01 LaTeX package for our custom definitions]
+\RequirePackage{xifthen}
+
+\newcommand{\peaks}[1]{%
+	\ifthenelse{\equal{#1}{thr}}{\texttt{"thr"}}{%
+	\ifthenelse{\equal{#1}{th}}{\texttt{"th-"}}{%
+	\ifthenelse{\equal{#1}{hr}}{\texttt{"-hr"}}{%
+	\ifthenelse{\equal{#1}{tr}}{\texttt{"t-r"}}{%
+	\ifthenelse{\equal{#1}{t}}{\texttt{"t--"}}{%
+	\ifthenelse{\equal{#1}{h}}{\texttt{"-h-"}}{%
+	\ifthenelse{\equal{#1}{r}}{\texttt{"--r"}}{%
+		\typeout{! Illegal argument for peaks: "#1"}%
+	}}}}}}}%
+}
+
+\endinput

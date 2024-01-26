@@ -1,0 +1,2510 @@
+{
+    "baseline": {
+        "accuracy": 0.40697674418604646,
+        "parameters": {
+            "booster": "gbtree",
+            "learning_rate": 0.3,
+            "min_split_loss": 0.0,
+            "max_depth": 6,
+            "min_child_weight": 1,
+            "max_delta_step": 0.0,
+            "subsample": 1.0,
+            "sampling_method": "uniform",
+            "reg_lambda": 1.0,
+            "reg_alpha": 0.0,
+            "tree_method": "auto",
+            "process_type": "default",
+            "grow_policy": "depthwise",
+            "max_leaves": 0,
+            "predictor": "auto",
+            "num_parallel_tree": 1,
+            "objective": "multi:softmax",
+            "num_class": 43,
+            "eval_metric": [
+                "merror"
+            ],
+            "seed": 0
+        }
+    },
+    "runs": [
+        {
+            "accuracy": 0.44651162790697674,
+            "parameters": {
+                "min_child_weight": 0.5,
+                "min_split_loss": 0.2
+            }
+        },
+        {
+            "accuracy": 0.4372093023255814,
+            "parameters": {
+                "min_child_weight": 0.5,
+                "min_split_loss": 0.12
+            }
+        },
+        {
+            "accuracy": 0.43488372093023253,
+            "parameters": {
+                "min_child_weight": 0.6,
+                "min_split_loss": 0.16
+            }
+        },
+        {
+            "accuracy": 0.43488372093023253,
+            "parameters": {
+                "min_child_weight": 0.6,
+                "min_split_loss": 0.2
+            }
+        },
+        {
+            "accuracy": 0.4279069767441861,
+            "parameters": {
+                "learning_rate": 0.2,
+                "min_split_loss": 0.16,
+                "max_depth": 9
+            }
+        },
+        {
+            "accuracy": 0.4279069767441861,
+            "parameters": {
+                "learning_rate": 0.30000000000000004,
+                "max_depth": 9
+            }
+        },
+        {
+            "accuracy": 0.4279069767441861,
+            "parameters": {
+                "min_child_weight": 0.5,
+                "min_split_loss": 0.16
+            }
+        },
+        {
+            "accuracy": 0.4279069767441861,
+            "parameters": {
+                "min_child_weight": 0.6,
+                "min_split_loss": 0.12
+            }
+        },
+        {
+            "accuracy": 0.4255813953488372,
+            "parameters": {
+                "learning_rate": 0.2,
+                "min_split_loss": 0.08,
+                "max_depth": 12
+            }
+        },
+        {
+            "accuracy": 0.4255813953488372,
+            "parameters": {
+                "learning_rate": 0.2,
+                "min_split_loss": 0.12,
+                "max_depth": 9
+            }
+        },
+        {
+            "accuracy": 0.4255813953488372,
+            "parameters": {
+                "learning_rate": 0.30000000000000004,
+                "min_split_loss": 0.04,
+                "max_depth": 9
+            }
+        },
+        {
+            "accuracy": 0.4255813953488372,
+            "parameters": {
+                "min_child_weight": 0.1,
+                "min_split_loss": 0.16
+            }
+        },
+        {
+            "accuracy": 0.4255813953488372,
+            "parameters": {
+                "min_child_weight": 0.7000000000000001,
+                "min_split_loss": 0.12
+            }
+        },
+        {
+            "accuracy": 0.4255813953488372,
+            "parameters": {
+                "min_child_weight": 0.8,
+                "min_split_loss": 0.12
+            }
+        },
+        {
+            "accuracy": 0.4232558139534883,
+            "parameters": {
+                "learning_rate": 0.1,
+                "min_split_loss": 0.2,
+                "max_depth": 15
+            }
+        },
+        {
+            "accuracy": 0.4232558139534883,
+            "parameters": {
+                "learning_rate": 0.2,
+                "min_split_loss": 0.04,
+                "max_depth": 9
+            }
+        },
+        {
+            "accuracy": 0.4232558139534883,
+            "parameters": {
+                "learning_rate": 0.2,
+                "min_split_loss": 0.12,
+                "max_depth": 12
+            }
+        },
+        {
+            "accuracy": 0.42093023255813955,
+            "parameters": {
+                "learning_rate": 0.2,
+                "min_split_loss": 0.04,
+                "max_depth": 15
+            }
+        },
+        {
+            "accuracy": 0.42093023255813955,
+            "parameters": {
+                "learning_rate": 0.2,
+                "min_split_loss": 0.08,
+                "max_depth": 9
+            }
+        },
+        {
+            "accuracy": 0.42093023255813955,
+            "parameters": {
+                "learning_rate": 0.2,
+                "min_split_loss": 0.12,
+                "max_depth": 15
+            }
+        },
+        {
+            "accuracy": 0.42093023255813955,
+            "parameters": {
+                "learning_rate": 0.30000000000000004,
+                "min_split_loss": 0.08,
+                "max_depth": 12
+            }
+        },
+        {
+            "accuracy": 0.42093023255813955,
+            "parameters": {
+                "learning_rate": 0.30000000000000004,
+                "min_split_loss": 0.12,
+                "max_depth": 15
+            }
+        },
+        {
+            "accuracy": 0.42093023255813955,
+            "parameters": {
+                "learning_rate": 0.30000000000000004,
+                "min_split_loss": 0.16,
+                "max_depth": 12
+            }
+        },
+        {
+            "accuracy": 0.42093023255813955,
+            "parameters": {
+                "learning_rate": 0.5,
+                "min_split_loss": 0.04,
+                "max_depth": 9
+            }
+        },
+        {
+            "accuracy": 0.42093023255813955,
+            "parameters": {
+                "min_child_weight": 0.1,
+                "min_split_loss": 0.2
+            }
+        },
+        {
+            "accuracy": 0.41860465116279066,
+            "parameters": {
+                "learning_rate": 0.1,
+                "max_depth": 12
+            }
+        },
+        {
+            "accuracy": 0.41860465116279066,
+            "parameters": {
+                "learning_rate": 0.1,
+                "min_split_loss": 0.08,
+                "max_depth": 9
+            }
+        },
+        {
+            "accuracy": 0.41860465116279066,
+            "parameters": {
+                "learning_rate": 0.1,
+                "min_split_loss": 0.08,
+                "max_depth": 12
+            }
+        },
+        {
+            "accuracy": 0.41860465116279066,
+            "parameters": {
+                "learning_rate": 0.2,
+                "min_split_loss": 0.2,
+                "max_depth": 12
+            }
+        },
+        {
+            "accuracy": 0.41860465116279066,
+            "parameters": {
+                "learning_rate": 0.2,
+                "min_split_loss": 0.2,
+                "max_depth": 15
+            }
+        },
+        {
+            "accuracy": 0.41860465116279066,
+            "parameters": {
+                "learning_rate": 0.30000000000000004,
+                "max_depth": 12
+            }
+        },
+        {
+            "accuracy": 0.41860465116279066,
+            "parameters": {
+                "learning_rate": 0.30000000000000004,
+                "min_split_loss": 0.08,
+                "max_depth": 15
+            }
+        },
+        {
+            "accuracy": 0.41860465116279066,
+            "parameters": {
+                "learning_rate": 0.30000000000000004,
+                "min_split_loss": 0.12,
+                "max_depth": 9
+            }
+        },
+        {
+            "accuracy": 0.41860465116279066,
+            "parameters": {
+                "learning_rate": 0.30000000000000004,
+                "min_split_loss": 0.12,
+                "max_depth": 12
+            }
+        },
+        {
+            "accuracy": 0.41860465116279066,
+            "parameters": {
+                "learning_rate": 0.30000000000000004,
+                "min_split_loss": 0.16,
+                "max_depth": 9
+            }
+        },
+        {
+            "accuracy": 0.41860465116279066,
+            "parameters": {
+                "learning_rate": 0.5,
+                "min_split_loss": 0.12,
+                "max_depth": 15
+            }
+        },
+        {
+            "accuracy": 0.41860465116279066,
+            "parameters": {
+                "min_child_weight": 0.4,
+                "min_split_loss": 0.16
+            }
+        },
+        {
+            "accuracy": 0.41860465116279066,
+            "parameters": {
+                "min_child_weight": 0.4,
+                "min_split_loss": 0.2
+            }
+        },
+        {
+            "accuracy": 0.41860465116279066,
+            "parameters": {
+                "min_child_weight": 0.8,
+                "min_split_loss": 0.2
+            }
+        },
+        {
+            "accuracy": 0.4162790697674419,
+            "parameters": {
+                "learning_rate": 0.1,
+                "max_depth": 9
+            }
+        },
+        {
+            "accuracy": 0.4162790697674419,
+            "parameters": {
+                "learning_rate": 0.1,
+                "min_split_loss": 0.12,
+                "max_depth": 15
+            }
+        },
+        {
+            "accuracy": 0.4162790697674419,
+            "parameters": {
+                "learning_rate": 0.1,
+                "min_split_loss": 0.16,
+                "max_depth": 9
+            }
+        },
+        {
+            "accuracy": 0.4162790697674419,
+            "parameters": {
+                "learning_rate": 0.2,
+                "max_depth": 15
+            }
+        },
+        {
+            "accuracy": 0.4162790697674419,
+            "parameters": {
+                "learning_rate": 0.2,
+                "min_split_loss": 0.04
+            }
+        },
+        {
+            "accuracy": 0.4162790697674419,
+            "parameters": {
+                "learning_rate": 0.2,
+                "min_split_loss": 0.16,
+                "max_depth": 12
+            }
+        },
+        {
+            "accuracy": 0.4162790697674419,
+            "parameters": {
+                "learning_rate": 0.2,
+                "min_split_loss": 0.16,
+                "max_depth": 15
+            }
+        },
+        {
+            "accuracy": 0.4162790697674419,
+            "parameters": {
+                "learning_rate": 0.30000000000000004,
+                "max_depth": 15
+            }
+        },
+        {
+            "accuracy": 0.4162790697674419,
+            "parameters": {
+                "min_child_weight": 0.4,
+                "min_split_loss": 0.12
+            }
+        },
+        {
+            "accuracy": 0.413953488372093,
+            "parameters": {
+                "learning_rate": 0.1,
+                "max_depth": 15
+            }
+        },
+        {
+            "accuracy": 0.413953488372093,
+            "parameters": {
+                "learning_rate": 0.1,
+                "min_split_loss": 0.04,
+                "max_depth": 12
+            }
+        },
+        {
+            "accuracy": 0.413953488372093,
+            "parameters": {
+                "learning_rate": 0.1,
+                "min_split_loss": 0.04,
+                "max_depth": 15
+            }
+        },
+        {
+            "accuracy": 0.413953488372093,
+            "parameters": {
+                "learning_rate": 0.1,
+                "min_split_loss": 0.2,
+                "max_depth": 12
+            }
+        },
+        {
+            "accuracy": 0.413953488372093,
+            "parameters": {
+                "learning_rate": 0.2
+            }
+        },
+        {
+            "accuracy": 0.413953488372093,
+            "parameters": {
+                "learning_rate": 0.2,
+                "max_depth": 12
+            }
+        },
+        {
+            "accuracy": 0.413953488372093,
+            "parameters": {
+                "learning_rate": 0.2,
+                "min_split_loss": 0.04,
+                "max_depth": 12
+            }
+        },
+        {
+            "accuracy": 0.413953488372093,
+            "parameters": {
+                "learning_rate": 0.2,
+                "min_split_loss": 0.08,
+                "max_depth": 15
+            }
+        },
+        {
+            "accuracy": 0.413953488372093,
+            "parameters": {
+                "learning_rate": 0.2,
+                "min_split_loss": 0.12
+            }
+        },
+        {
+            "accuracy": 0.413953488372093,
+            "parameters": {
+                "learning_rate": 0.2,
+                "min_split_loss": 0.2
+            }
+        },
+        {
+            "accuracy": 0.413953488372093,
+            "parameters": {
+                "learning_rate": 0.2,
+                "min_split_loss": 0.2,
+                "max_depth": 9
+            }
+        },
+        {
+            "accuracy": 0.413953488372093,
+            "parameters": {
+                "learning_rate": 0.30000000000000004,
+                "min_split_loss": 0.2,
+                "max_depth": 9
+            }
+        },
+        {
+            "accuracy": 0.413953488372093,
+            "parameters": {
+                "learning_rate": 0.30000000000000004,
+                "min_split_loss": 0.2,
+                "max_depth": 12
+            }
+        },
+        {
+            "accuracy": 0.413953488372093,
+            "parameters": {
+                "learning_rate": 0.30000000000000004,
+                "min_split_loss": 0.2,
+                "max_depth": 15
+            }
+        },
+        {
+            "accuracy": 0.413953488372093,
+            "parameters": {
+                "min_child_weight": 0.1,
+                "min_split_loss": 0.12
+            }
+        },
+        {
+            "accuracy": 0.41162790697674423,
+            "parameters": {
+                "learning_rate": 0.1,
+                "min_split_loss": 0.12,
+                "max_depth": 9
+            }
+        },
+        {
+            "accuracy": 0.41162790697674423,
+            "parameters": {
+                "learning_rate": 0.1,
+                "min_split_loss": 0.16,
+                "max_depth": 12
+            }
+        },
+        {
+            "accuracy": 0.41162790697674423,
+            "parameters": {
+                "learning_rate": 0.1,
+                "min_split_loss": 0.16,
+                "max_depth": 15
+            }
+        },
+        {
+            "accuracy": 0.41162790697674423,
+            "parameters": {
+                "learning_rate": 0.2,
+                "max_depth": 9
+            }
+        },
+        {
+            "accuracy": 0.41162790697674423,
+            "parameters": {
+                "learning_rate": 0.2,
+                "min_split_loss": 0.08
+            }
+        },
+        {
+            "accuracy": 0.41162790697674423,
+            "parameters": {
+                "learning_rate": 0.30000000000000004,
+                "min_split_loss": 0.04,
+                "max_depth": 15
+            }
+        },
+        {
+            "accuracy": 0.41162790697674423,
+            "parameters": {
+                "learning_rate": 0.30000000000000004,
+                "min_split_loss": 0.08,
+                "max_depth": 9
+            }
+        },
+        {
+            "accuracy": 0.41162790697674423,
+            "parameters": {
+                "learning_rate": 0.4,
+                "min_split_loss": 0.16,
+                "max_depth": 9
+            }
+        },
+        {
+            "accuracy": 0.41162790697674423,
+            "parameters": {
+                "learning_rate": 0.5,
+                "min_split_loss": 0.16,
+                "max_depth": 15
+            }
+        },
+        {
+            "accuracy": 0.40930232558139534,
+            "parameters": {
+                "learning_rate": 0.1,
+                "min_split_loss": 0.04,
+                "max_depth": 9
+            }
+        },
+        {
+            "accuracy": 0.40930232558139534,
+            "parameters": {
+                "learning_rate": 0.1,
+                "min_split_loss": 0.08,
+                "max_depth": 15
+            }
+        },
+        {
+            "accuracy": 0.40930232558139534,
+            "parameters": {
+                "learning_rate": 0.1,
+                "min_split_loss": 0.12,
+                "max_depth": 12
+            }
+        },
+        {
+            "accuracy": 0.40930232558139534,
+            "parameters": {
+                "learning_rate": 0.30000000000000004,
+                "min_split_loss": 0.04,
+                "max_depth": 12
+            }
+        },
+        {
+            "accuracy": 0.40930232558139534,
+            "parameters": {
+                "learning_rate": 0.4,
+                "max_depth": 9
+            }
+        },
+        {
+            "accuracy": 0.40930232558139534,
+            "parameters": {
+                "learning_rate": 0.5,
+                "min_split_loss": 0.08,
+                "max_depth": 12
+            }
+        },
+        {
+            "accuracy": 0.40930232558139534,
+            "parameters": {
+                "learning_rate": 0.5,
+                "min_split_loss": 0.16,
+                "max_depth": 9
+            }
+        },
+        {
+            "accuracy": 0.40930232558139534,
+            "parameters": {
+                "min_child_weight": 0.30000000000000004,
+                "min_split_loss": 0.2
+            }
+        },
+        {
+            "accuracy": 0.40930232558139534,
+            "parameters": {
+                "min_child_weight": 0.7000000000000001,
+                "min_split_loss": 0.16
+            }
+        },
+        {
+            "accuracy": 0.40697674418604646,
+            "parameters": {
+                "learning_rate": 0.1
+            }
+        },
+        {
+            "accuracy": 0.40697674418604646,
+            "parameters": {
+                "learning_rate": 0.1,
+                "min_split_loss": 0.08
+            }
+        },
+        {
+            "accuracy": 0.40697674418604646,
+            "parameters": {
+                "learning_rate": 0.1,
+                "min_split_loss": 0.12
+            }
+        },
+        {
+            "accuracy": 0.40697674418604646,
+            "parameters": {
+                "learning_rate": 0.1,
+                "min_split_loss": 0.2
+            }
+        },
+        {
+            "accuracy": 0.40697674418604646,
+            "parameters": {
+                "learning_rate": 0.2,
+                "min_split_loss": 0.16
+            }
+        },
+        {
+            "accuracy": 0.40697674418604646,
+            "parameters": {
+                "learning_rate": 0.30000000000000004
+            }
+        },
+        {
+            "accuracy": 0.40697674418604646,
+            "parameters": {
+                "learning_rate": 0.4,
+                "min_split_loss": 0.04,
+                "max_depth": 15
+            }
+        },
+        {
+            "accuracy": 0.40697674418604646,
+            "parameters": {
+                "learning_rate": 0.4,
+                "min_split_loss": 0.08,
+                "max_depth": 12
+            }
+        },
+        {
+            "accuracy": 0.40697674418604646,
+            "parameters": {
+                "learning_rate": 0.4,
+                "min_split_loss": 0.12,
+                "max_depth": 9
+            }
+        },
+        {
+            "accuracy": 0.40697674418604646,
+            "parameters": {
+                "min_child_weight": 0.30000000000000004,
+                "min_split_loss": 0.12
+            }
+        },
+        {
+            "accuracy": 0.4046511627906977,
+            "parameters": {
+                "learning_rate": 0.1,
+                "min_split_loss": 0.04
+            }
+        },
+        {
+            "accuracy": 0.4046511627906977,
+            "parameters": {
+                "learning_rate": 0.1,
+                "min_split_loss": 0.16
+            }
+        },
+        {
+            "accuracy": 0.4046511627906977,
+            "parameters": {
+                "learning_rate": 0.30000000000000004,
+                "min_split_loss": 0.04
+            }
+        },
+        {
+            "accuracy": 0.4046511627906977,
+            "parameters": {
+                "min_child_weight": 0.2,
+                "min_split_loss": 0.16
+            }
+        },
+        {
+            "accuracy": 0.4046511627906977,
+            "parameters": {
+                "min_child_weight": 0.8,
+                "min_split_loss": 0.16
+            }
+        },
+        {
+            "accuracy": 0.4046511627906977,
+            "parameters": {
+                "min_child_weight": 0.9,
+                "min_split_loss": 0.16
+            }
+        },
+        {
+            "accuracy": 0.4023255813953488,
+            "parameters": {
+                "learning_rate": 0.1,
+                "min_split_loss": 0.2,
+                "max_depth": 9
+            }
+        },
+        {
+            "accuracy": 0.4023255813953488,
+            "parameters": {
+                "learning_rate": 0.30000000000000004,
+                "min_split_loss": 0.16,
+                "max_depth": 15
+            }
+        },
+        {
+            "accuracy": 0.4023255813953488,
+            "parameters": {
+                "learning_rate": 0.30000000000000004,
+                "min_split_loss": 0.2
+            }
+        },
+        {
+            "accuracy": 0.4023255813953488,
+            "parameters": {
+                "learning_rate": 0.4,
+                "min_split_loss": 0.04,
+                "max_depth": 12
+            }
+        },
+        {
+            "accuracy": 0.4023255813953488,
+            "parameters": {
+                "learning_rate": 0.4,
+                "min_split_loss": 0.16
+            }
+        },
+        {
+            "accuracy": 0.4023255813953488,
+            "parameters": {
+                "learning_rate": 0.5,
+                "min_split_loss": 0.2,
+                "max_depth": 12
+            }
+        },
+        {
+            "accuracy": 0.4023255813953488,
+            "parameters": {
+                "min_child_weight": 0.30000000000000004,
+                "min_split_loss": 0.16
+            }
+        },
+        {
+            "accuracy": 0.4,
+            "parameters": {
+                "learning_rate": 0.30000000000000004,
+                "min_split_loss": 0.12
+            }
+        },
+        {
+            "accuracy": 0.4,
+            "parameters": {
+                "learning_rate": 0.30000000000000004,
+                "min_split_loss": 0.16
+            }
+        },
+        {
+            "accuracy": 0.4,
+            "parameters": {
+                "learning_rate": 0.5
+            }
+        },
+        {
+            "accuracy": 0.4,
+            "parameters": {
+                "learning_rate": 0.5,
+                "min_split_loss": 0.16,
+                "max_depth": 12
+            }
+        },
+        {
+            "accuracy": 0.4,
+            "parameters": {
+                "learning_rate": 0.5,
+                "min_split_loss": 0.2,
+                "max_depth": 15
+            }
+        },
+        {
+            "accuracy": 0.4,
+            "parameters": {
+                "min_child_weight": 0.2,
+                "min_split_loss": 0.2
+            }
+        },
+        {
+            "accuracy": 0.39767441860465114,
+            "parameters": {
+                "learning_rate": 0.30000000000000004,
+                "min_split_loss": 0.08
+            }
+        },
+        {
+            "accuracy": 0.39767441860465114,
+            "parameters": {
+                "learning_rate": 0.4
+            }
+        },
+        {
+            "accuracy": 0.39767441860465114,
+            "parameters": {
+                "learning_rate": 0.4,
+                "max_depth": 15
+            }
+        },
+        {
+            "accuracy": 0.39767441860465114,
+            "parameters": {
+                "learning_rate": 0.4,
+                "min_split_loss": 0.04,
+                "max_depth": 9
+            }
+        },
+        {
+            "accuracy": 0.39767441860465114,
+            "parameters": {
+                "learning_rate": 0.4,
+                "min_split_loss": 0.12,
+                "max_depth": 15
+            }
+        },
+        {
+            "accuracy": 0.39767441860465114,
+            "parameters": {
+                "learning_rate": 0.4,
+                "min_split_loss": 0.2,
+                "max_depth": 9
+            }
+        },
+        {
+            "accuracy": 0.39767441860465114,
+            "parameters": {
+                "learning_rate": 0.4,
+                "min_split_loss": 0.2,
+                "max_depth": 12
+            }
+        },
+        {
+            "accuracy": 0.39767441860465114,
+            "parameters": {
+                "learning_rate": 0.5,
+                "max_depth": 9
+            }
+        },
+        {
+            "accuracy": 0.39767441860465114,
+            "parameters": {
+                "learning_rate": 0.5,
+                "min_split_loss": 0.08,
+                "max_depth": 15
+            }
+        },
+        {
+            "accuracy": 0.39767441860465114,
+            "parameters": {
+                "learning_rate": 0.5,
+                "min_split_loss": 0.12,
+                "max_depth": 9
+            }
+        },
+        {
+            "accuracy": 0.39767441860465114,
+            "parameters": {
+                "learning_rate": 0.6,
+                "min_split_loss": 0.12,
+                "max_depth": 9
+            }
+        },
+        {
+            "accuracy": 0.39767441860465114,
+            "parameters": {
+                "min_child_weight": 0.2,
+                "min_split_loss": 0.12
+            }
+        },
+        {
+            "accuracy": 0.39534883720930236,
+            "parameters": {
+                "learning_rate": 0.4,
+                "min_split_loss": 0.12,
+                "max_depth": 12
+            }
+        },
+        {
+            "accuracy": 0.39534883720930236,
+            "parameters": {
+                "learning_rate": 0.4,
+                "min_split_loss": 0.2
+            }
+        },
+        {
+            "accuracy": 0.39534883720930236,
+            "parameters": {
+                "learning_rate": 0.5,
+                "min_split_loss": 0.08,
+                "max_depth": 9
+            }
+        },
+        {
+            "accuracy": 0.39534883720930236,
+            "parameters": {
+                "learning_rate": 0.5,
+                "min_split_loss": 0.12
+            }
+        },
+        {
+            "accuracy": 0.39534883720930236,
+            "parameters": {
+                "learning_rate": 0.5,
+                "min_split_loss": 0.2,
+                "max_depth": 9
+            }
+        },
+        {
+            "accuracy": 0.3930232558139535,
+            "parameters": {
+                "learning_rate": 0.4,
+                "min_split_loss": 0.08
+            }
+        },
+        {
+            "accuracy": 0.3930232558139535,
+            "parameters": {
+                "learning_rate": 0.5,
+                "min_split_loss": 0.04
+            }
+        },
+        {
+            "accuracy": 0.3930232558139535,
+            "parameters": {
+                "learning_rate": 0.5,
+                "min_split_loss": 0.04,
+                "max_depth": 15
+            }
+        },
+        {
+            "accuracy": 0.3930232558139535,
+            "parameters": {
+                "learning_rate": 0.5,
+                "min_split_loss": 0.08
+            }
+        },
+        {
+            "accuracy": 0.3930232558139535,
+            "parameters": {
+                "learning_rate": 0.5,
+                "min_split_loss": 0.12,
+                "max_depth": 12
+            }
+        },
+        {
+            "accuracy": 0.3930232558139535,
+            "parameters": {
+                "learning_rate": 0.5,
+                "min_split_loss": 0.16
+            }
+        },
+        {
+            "accuracy": 0.3930232558139535,
+            "parameters": {
+                "min_child_weight": 0.7000000000000001,
+                "min_split_loss": 0.2
+            }
+        },
+        {
+            "accuracy": 0.3930232558139535,
+            "parameters": {
+                "min_child_weight": 0.9,
+                "min_split_loss": 0.2
+            }
+        },
+        {
+            "accuracy": 0.3906976744186047,
+            "parameters": {
+                "learning_rate": 0.4,
+                "max_depth": 12
+            }
+        },
+        {
+            "accuracy": 0.3906976744186047,
+            "parameters": {
+                "learning_rate": 0.4,
+                "min_split_loss": 0.16,
+                "max_depth": 12
+            }
+        },
+        {
+            "accuracy": 0.3906976744186047,
+            "parameters": {
+                "learning_rate": 0.5,
+                "max_depth": 15
+            }
+        },
+        {
+            "accuracy": 0.3906976744186047,
+            "parameters": {
+                "learning_rate": 0.6,
+                "max_depth": 12
+            }
+        },
+        {
+            "accuracy": 0.3906976744186047,
+            "parameters": {
+                "learning_rate": 0.6,
+                "max_depth": 15
+            }
+        },
+        {
+            "accuracy": 0.3906976744186047,
+            "parameters": {
+                "learning_rate": 0.6,
+                "min_split_loss": 0.04
+            }
+        },
+        {
+            "accuracy": 0.3906976744186047,
+            "parameters": {
+                "learning_rate": 0.6,
+                "min_split_loss": 0.04,
+                "max_depth": 9
+            }
+        },
+        {
+            "accuracy": 0.3906976744186047,
+            "parameters": {
+                "learning_rate": 0.6,
+                "min_split_loss": 0.08,
+                "max_depth": 12
+            }
+        },
+        {
+            "accuracy": 0.3883720930232558,
+            "parameters": {
+                "learning_rate": 0.30000000000000004,
+                "min_split_loss": 0.2,
+                "max_depth": 3
+            }
+        },
+        {
+            "accuracy": 0.3883720930232558,
+            "parameters": {
+                "learning_rate": 0.4,
+                "min_split_loss": 0.08,
+                "max_depth": 15
+            }
+        },
+        {
+            "accuracy": 0.3883720930232558,
+            "parameters": {
+                "learning_rate": 0.5,
+                "max_depth": 12
+            }
+        },
+        {
+            "accuracy": 0.3883720930232558,
+            "parameters": {
+                "learning_rate": 0.5,
+                "min_split_loss": 0.2
+            }
+        },
+        {
+            "accuracy": 0.3883720930232558,
+            "parameters": {
+                "learning_rate": 0.7000000000000001,
+                "max_depth": 15
+            }
+        },
+        {
+            "accuracy": 0.38604651162790693,
+            "parameters": {
+                "learning_rate": 0.30000000000000004,
+                "max_depth": 3
+            }
+        },
+        {
+            "accuracy": 0.38604651162790693,
+            "parameters": {
+                "learning_rate": 0.30000000000000004,
+                "min_split_loss": 0.08,
+                "max_depth": 3
+            }
+        },
+        {
+            "accuracy": 0.38604651162790693,
+            "parameters": {
+                "learning_rate": 0.30000000000000004,
+                "min_split_loss": 0.12,
+                "max_depth": 3
+            }
+        },
+        {
+            "accuracy": 0.38604651162790693,
+            "parameters": {
+                "learning_rate": 0.30000000000000004,
+                "min_split_loss": 0.16,
+                "max_depth": 3
+            }
+        },
+        {
+            "accuracy": 0.38604651162790693,
+            "parameters": {
+                "learning_rate": 0.4,
+                "min_split_loss": 0.04
+            }
+        },
+        {
+            "accuracy": 0.38604651162790693,
+            "parameters": {
+                "learning_rate": 0.4,
+                "min_split_loss": 0.08,
+                "max_depth": 9
+            }
+        },
+        {
+            "accuracy": 0.38604651162790693,
+            "parameters": {
+                "learning_rate": 0.4,
+                "min_split_loss": 0.16,
+                "max_depth": 15
+            }
+        },
+        {
+            "accuracy": 0.38604651162790693,
+            "parameters": {
+                "learning_rate": 0.4,
+                "min_split_loss": 0.2,
+                "max_depth": 15
+            }
+        },
+        {
+            "accuracy": 0.38604651162790693,
+            "parameters": {
+                "learning_rate": 0.5,
+                "min_split_loss": 0.04,
+                "max_depth": 12
+            }
+        },
+        {
+            "accuracy": 0.38604651162790693,
+            "parameters": {
+                "learning_rate": 0.6,
+                "min_split_loss": 0.04,
+                "max_depth": 15
+            }
+        },
+        {
+            "accuracy": 0.38604651162790693,
+            "parameters": {
+                "learning_rate": 0.6,
+                "min_split_loss": 0.12,
+                "max_depth": 15
+            }
+        },
+        {
+            "accuracy": 0.38604651162790693,
+            "parameters": {
+                "learning_rate": 0.6,
+                "min_split_loss": 0.2,
+                "max_depth": 9
+            }
+        },
+        {
+            "accuracy": 0.38604651162790693,
+            "parameters": {
+                "learning_rate": 0.6,
+                "min_split_loss": 0.2,
+                "max_depth": 15
+            }
+        },
+        {
+            "accuracy": 0.38604651162790693,
+            "parameters": {
+                "learning_rate": 0.8,
+                "min_split_loss": 0.16,
+                "max_depth": 12
+            }
+        },
+        {
+            "accuracy": 0.38372093023255816,
+            "parameters": {
+                "learning_rate": 0.30000000000000004,
+                "min_split_loss": 0.04,
+                "max_depth": 3
+            }
+        },
+        {
+            "accuracy": 0.38372093023255816,
+            "parameters": {
+                "learning_rate": 0.4,
+                "min_split_loss": 0.08,
+                "max_depth": 3
+            }
+        },
+        {
+            "accuracy": 0.38372093023255816,
+            "parameters": {
+                "learning_rate": 0.4,
+                "min_split_loss": 0.16,
+                "max_depth": 3
+            }
+        },
+        {
+            "accuracy": 0.38372093023255816,
+            "parameters": {
+                "learning_rate": 0.6,
+                "min_split_loss": 0.16
+            }
+        },
+        {
+            "accuracy": 0.38372093023255816,
+            "parameters": {
+                "learning_rate": 0.6,
+                "min_split_loss": 0.16,
+                "max_depth": 12
+            }
+        },
+        {
+            "accuracy": 0.38372093023255816,
+            "parameters": {
+                "learning_rate": 0.6,
+                "min_split_loss": 0.16,
+                "max_depth": 15
+            }
+        },
+        {
+            "accuracy": 0.38372093023255816,
+            "parameters": {
+                "learning_rate": 0.8,
+                "min_split_loss": 0.04,
+                "max_depth": 12
+            }
+        },
+        {
+            "accuracy": 0.38372093023255816,
+            "parameters": {
+                "learning_rate": 0.8,
+                "min_split_loss": 0.04,
+                "max_depth": 15
+            }
+        },
+        {
+            "accuracy": 0.38372093023255816,
+            "parameters": {
+                "learning_rate": 0.8,
+                "min_split_loss": 0.16,
+                "max_depth": 9
+            }
+        },
+        {
+            "accuracy": 0.38139534883720927,
+            "parameters": {
+                "learning_rate": 0.4,
+                "max_depth": 3
+            }
+        },
+        {
+            "accuracy": 0.38139534883720927,
+            "parameters": {
+                "learning_rate": 0.4,
+                "min_split_loss": 0.12
+            }
+        },
+        {
+            "accuracy": 0.38139534883720927,
+            "parameters": {
+                "learning_rate": 0.6
+            }
+        },
+        {
+            "accuracy": 0.38139534883720927,
+            "parameters": {
+                "learning_rate": 0.7000000000000001,
+                "min_split_loss": 0.08,
+                "max_depth": 9
+            }
+        },
+        {
+            "accuracy": 0.38139534883720927,
+            "parameters": {
+                "min_child_weight": 0.9,
+                "min_split_loss": 0.12
+            }
+        },
+        {
+            "accuracy": 0.3790697674418605,
+            "parameters": {
+                "learning_rate": 0.2,
+                "min_split_loss": 0.2,
+                "max_depth": 3
+            }
+        },
+        {
+            "accuracy": 0.3790697674418605,
+            "parameters": {
+                "learning_rate": 0.4,
+                "min_split_loss": 0.12,
+                "max_depth": 3
+            }
+        },
+        {
+            "accuracy": 0.3790697674418605,
+            "parameters": {
+                "learning_rate": 0.4,
+                "min_split_loss": 0.2,
+                "max_depth": 3
+            }
+        },
+        {
+            "accuracy": 0.3790697674418605,
+            "parameters": {
+                "learning_rate": 0.6,
+                "min_split_loss": 0.04,
+                "max_depth": 12
+            }
+        },
+        {
+            "accuracy": 0.3790697674418605,
+            "parameters": {
+                "learning_rate": 0.6,
+                "min_split_loss": 0.08,
+                "max_depth": 9
+            }
+        },
+        {
+            "accuracy": 0.3790697674418605,
+            "parameters": {
+                "learning_rate": 0.6,
+                "min_split_loss": 0.08,
+                "max_depth": 15
+            }
+        },
+        {
+            "accuracy": 0.3790697674418605,
+            "parameters": {
+                "learning_rate": 0.6,
+                "min_split_loss": 0.12,
+                "max_depth": 12
+            }
+        },
+        {
+            "accuracy": 0.3790697674418605,
+            "parameters": {
+                "learning_rate": 0.7000000000000001,
+                "min_split_loss": 0.08,
+                "max_depth": 12
+            }
+        },
+        {
+            "accuracy": 0.3790697674418605,
+            "parameters": {
+                "learning_rate": 0.8,
+                "max_depth": 12
+            }
+        },
+        {
+            "accuracy": 0.3790697674418605,
+            "parameters": {
+                "learning_rate": 0.8,
+                "min_split_loss": 0.12,
+                "max_depth": 15
+            }
+        },
+        {
+            "accuracy": 0.3767441860465116,
+            "parameters": {
+                "learning_rate": 0.2,
+                "max_depth": 3
+            }
+        },
+        {
+            "accuracy": 0.3767441860465116,
+            "parameters": {
+                "learning_rate": 0.2,
+                "min_split_loss": 0.04,
+                "max_depth": 3
+            }
+        },
+        {
+            "accuracy": 0.3767441860465116,
+            "parameters": {
+                "learning_rate": 0.2,
+                "min_split_loss": 0.08,
+                "max_depth": 3
+            }
+        },
+        {
+            "accuracy": 0.3767441860465116,
+            "parameters": {
+                "learning_rate": 0.2,
+                "min_split_loss": 0.12,
+                "max_depth": 3
+            }
+        },
+        {
+            "accuracy": 0.3767441860465116,
+            "parameters": {
+                "learning_rate": 0.2,
+                "min_split_loss": 0.16,
+                "max_depth": 3
+            }
+        },
+        {
+            "accuracy": 0.3767441860465116,
+            "parameters": {
+                "learning_rate": 0.6,
+                "min_split_loss": 0.16,
+                "max_depth": 9
+            }
+        },
+        {
+            "accuracy": 0.3767441860465116,
+            "parameters": {
+                "learning_rate": 0.7000000000000001,
+                "min_split_loss": 0.12,
+                "max_depth": 9
+            }
+        },
+        {
+            "accuracy": 0.3767441860465116,
+            "parameters": {
+                "learning_rate": 0.8,
+                "min_split_loss": 0.08,
+                "max_depth": 12
+            }
+        },
+        {
+            "accuracy": 0.3767441860465116,
+            "parameters": {
+                "learning_rate": 0.8,
+                "min_split_loss": 0.12,
+                "max_depth": 12
+            }
+        },
+        {
+            "accuracy": 0.3767441860465116,
+            "parameters": {
+                "learning_rate": 0.8,
+                "min_split_loss": 0.2,
+                "max_depth": 15
+            }
+        },
+        {
+            "accuracy": 0.37441860465116283,
+            "parameters": {
+                "learning_rate": 0.4,
+                "min_split_loss": 0.04,
+                "max_depth": 3
+            }
+        },
+        {
+            "accuracy": 0.37441860465116283,
+            "parameters": {
+                "learning_rate": 0.7000000000000001,
+                "min_split_loss": 0.04,
+                "max_depth": 9
+            }
+        },
+        {
+            "accuracy": 0.37441860465116283,
+            "parameters": {
+                "learning_rate": 0.8,
+                "min_split_loss": 0.08,
+                "max_depth": 15
+            }
+        },
+        {
+            "accuracy": 0.37209302325581395,
+            "parameters": {
+                "learning_rate": 0.7000000000000001,
+                "max_depth": 9
+            }
+        },
+        {
+            "accuracy": 0.37209302325581395,
+            "parameters": {
+                "learning_rate": 0.7000000000000001,
+                "max_depth": 12
+            }
+        },
+        {
+            "accuracy": 0.37209302325581395,
+            "parameters": {
+                "learning_rate": 0.7000000000000001,
+                "min_split_loss": 0.04,
+                "max_depth": 12
+            }
+        },
+        {
+            "accuracy": 0.37209302325581395,
+            "parameters": {
+                "learning_rate": 0.7000000000000001,
+                "min_split_loss": 0.16,
+                "max_depth": 15
+            }
+        },
+        {
+            "accuracy": 0.37209302325581395,
+            "parameters": {
+                "learning_rate": 0.7000000000000001,
+                "min_split_loss": 0.2
+            }
+        },
+        {
+            "accuracy": 0.37209302325581395,
+            "parameters": {
+                "learning_rate": 0.8,
+                "max_depth": 15
+            }
+        },
+        {
+            "accuracy": 0.37209302325581395,
+            "parameters": {
+                "learning_rate": 0.8,
+                "min_split_loss": 0.08,
+                "max_depth": 9
+            }
+        },
+        {
+            "accuracy": 0.36976744186046506,
+            "parameters": {
+                "learning_rate": 0.6,
+                "max_depth": 9
+            }
+        },
+        {
+            "accuracy": 0.36976744186046506,
+            "parameters": {
+                "learning_rate": 0.6,
+                "min_split_loss": 0.12
+            }
+        },
+        {
+            "accuracy": 0.36976744186046506,
+            "parameters": {
+                "learning_rate": 0.6,
+                "min_split_loss": 0.2
+            }
+        },
+        {
+            "accuracy": 0.36976744186046506,
+            "parameters": {
+                "learning_rate": 0.6,
+                "min_split_loss": 0.2,
+                "max_depth": 12
+            }
+        },
+        {
+            "accuracy": 0.36976744186046506,
+            "parameters": {
+                "learning_rate": 0.7000000000000001,
+                "min_split_loss": 0.12,
+                "max_depth": 15
+            }
+        },
+        {
+            "accuracy": 0.36976744186046506,
+            "parameters": {
+                "learning_rate": 0.8,
+                "max_depth": 9
+            }
+        },
+        {
+            "accuracy": 0.36976744186046506,
+            "parameters": {
+                "learning_rate": 0.8,
+                "min_split_loss": 0.2,
+                "max_depth": 12
+            }
+        },
+        {
+            "accuracy": 0.36976744186046506,
+            "parameters": {
+                "learning_rate": 0.9,
+                "max_depth": 12
+            }
+        },
+        {
+            "accuracy": 0.3674418604651163,
+            "parameters": {
+                "learning_rate": 0.8,
+                "min_split_loss": 0.12,
+                "max_depth": 9
+            }
+        },
+        {
+            "accuracy": 0.3674418604651163,
+            "parameters": {
+                "learning_rate": 0.8,
+                "min_split_loss": 0.16,
+                "max_depth": 15
+            }
+        },
+        {
+            "accuracy": 0.3674418604651163,
+            "parameters": {
+                "learning_rate": 0.9,
+                "min_split_loss": 0.12,
+                "max_depth": 12
+            }
+        },
+        {
+            "accuracy": 0.3651162790697674,
+            "parameters": {
+                "learning_rate": 0.6,
+                "min_split_loss": 0.04,
+                "max_depth": 3
+            }
+        },
+        {
+            "accuracy": 0.3651162790697674,
+            "parameters": {
+                "learning_rate": 0.7000000000000001,
+                "min_split_loss": 0.04,
+                "max_depth": 15
+            }
+        },
+        {
+            "accuracy": 0.3651162790697674,
+            "parameters": {
+                "learning_rate": 0.7000000000000001,
+                "min_split_loss": 0.16,
+                "max_depth": 9
+            }
+        },
+        {
+            "accuracy": 0.3651162790697674,
+            "parameters": {
+                "learning_rate": 0.7000000000000001,
+                "min_split_loss": 0.16,
+                "max_depth": 12
+            }
+        },
+        {
+            "accuracy": 0.3651162790697674,
+            "parameters": {
+                "learning_rate": 0.8,
+                "min_split_loss": 0.04,
+                "max_depth": 9
+            }
+        },
+        {
+            "accuracy": 0.3651162790697674,
+            "parameters": {
+                "learning_rate": 1.0,
+                "min_split_loss": 0.04,
+                "max_depth": 12
+            }
+        },
+        {
+            "accuracy": 0.3627906976744186,
+            "parameters": {
+                "learning_rate": 0.6,
+                "max_depth": 3
+            }
+        },
+        {
+            "accuracy": 0.3627906976744186,
+            "parameters": {
+                "learning_rate": 0.6,
+                "min_split_loss": 0.08,
+                "max_depth": 3
+            }
+        },
+        {
+            "accuracy": 0.3627906976744186,
+            "parameters": {
+                "learning_rate": 0.6,
+                "min_split_loss": 0.08
+            }
+        },
+        {
+            "accuracy": 0.3627906976744186,
+            "parameters": {
+                "learning_rate": 0.7000000000000001,
+                "min_split_loss": 0.04
+            }
+        },
+        {
+            "accuracy": 0.3627906976744186,
+            "parameters": {
+                "learning_rate": 0.7000000000000001,
+                "min_split_loss": 0.08
+            }
+        },
+        {
+            "accuracy": 0.3627906976744186,
+            "parameters": {
+                "learning_rate": 0.7000000000000001,
+                "min_split_loss": 0.08,
+                "max_depth": 15
+            }
+        },
+        {
+            "accuracy": 0.3627906976744186,
+            "parameters": {
+                "learning_rate": 0.7000000000000001,
+                "min_split_loss": 0.12
+            }
+        },
+        {
+            "accuracy": 0.3627906976744186,
+            "parameters": {
+                "learning_rate": 0.7000000000000001,
+                "min_split_loss": 0.12,
+                "max_depth": 12
+            }
+        },
+        {
+            "accuracy": 0.3627906976744186,
+            "parameters": {
+                "learning_rate": 0.8,
+                "min_split_loss": 0.16
+            }
+        },
+        {
+            "accuracy": 0.3627906976744186,
+            "parameters": {
+                "learning_rate": 0.9,
+                "max_depth": 15
+            }
+        },
+        {
+            "accuracy": 0.3627906976744186,
+            "parameters": {
+                "learning_rate": 0.9,
+                "min_split_loss": 0.16,
+                "max_depth": 9
+            }
+        },
+        {
+            "accuracy": 0.36046511627906974,
+            "parameters": {
+                "learning_rate": 0.8,
+                "min_split_loss": 0.2,
+                "max_depth": 9
+            }
+        },
+        {
+            "accuracy": 0.35813953488372097,
+            "parameters": {
+                "learning_rate": 0.8,
+                "min_split_loss": 0.08
+            }
+        },
+        {
+            "accuracy": 0.35813953488372097,
+            "parameters": {
+                "learning_rate": 0.9,
+                "min_split_loss": 0.16,
+                "max_depth": 12
+            }
+        },
+        {
+            "accuracy": 0.35813953488372097,
+            "parameters": {
+                "learning_rate": 0.9,
+                "min_split_loss": 0.2,
+                "max_depth": 9
+            }
+        },
+        {
+            "accuracy": 0.35813953488372097,
+            "parameters": {
+                "learning_rate": 1.0,
+                "max_depth": 12
+            }
+        },
+        {
+            "accuracy": 0.3558139534883721,
+            "parameters": {
+                "learning_rate": 0.5,
+                "min_split_loss": 0.04,
+                "max_depth": 3
+            }
+        },
+        {
+            "accuracy": 0.3558139534883721,
+            "parameters": {
+                "learning_rate": 0.6,
+                "min_split_loss": 0.2,
+                "max_depth": 3
+            }
+        },
+        {
+            "accuracy": 0.3558139534883721,
+            "parameters": {
+                "learning_rate": 0.9,
+                "min_split_loss": 0.08,
+                "max_depth": 9
+            }
+        },
+        {
+            "accuracy": 0.3558139534883721,
+            "parameters": {
+                "learning_rate": 0.9,
+                "min_split_loss": 0.08,
+                "max_depth": 12
+            }
+        },
+        {
+            "accuracy": 0.3558139534883721,
+            "parameters": {
+                "learning_rate": 0.9,
+                "min_split_loss": 0.08,
+                "max_depth": 15
+            }
+        },
+        {
+            "accuracy": 0.3558139534883721,
+            "parameters": {
+                "learning_rate": 1.0
+            }
+        },
+        {
+            "accuracy": 0.3558139534883721,
+            "parameters": {
+                "learning_rate": 1.0,
+                "max_depth": 15
+            }
+        },
+        {
+            "accuracy": 0.3558139534883721,
+            "parameters": {
+                "learning_rate": 1.0,
+                "min_split_loss": 0.08,
+                "max_depth": 15
+            }
+        },
+        {
+            "accuracy": 0.3534883720930233,
+            "parameters": {
+                "learning_rate": 0.7000000000000001
+            }
+        },
+        {
+            "accuracy": 0.3534883720930233,
+            "parameters": {
+                "learning_rate": 0.7000000000000001,
+                "min_split_loss": 0.12,
+                "max_depth": 3
+            }
+        },
+        {
+            "accuracy": 0.3534883720930233,
+            "parameters": {
+                "learning_rate": 0.8
+            }
+        },
+        {
+            "accuracy": 0.3534883720930233,
+            "parameters": {
+                "learning_rate": 0.9,
+                "min_split_loss": 0.04,
+                "max_depth": 3
+            }
+        },
+        {
+            "accuracy": 0.3534883720930233,
+            "parameters": {
+                "learning_rate": 0.9,
+                "min_split_loss": 0.16,
+                "max_depth": 15
+            }
+        },
+        {
+            "accuracy": 0.3534883720930233,
+            "parameters": {
+                "learning_rate": 1.0,
+                "min_split_loss": 0.08,
+                "max_depth": 12
+            }
+        },
+        {
+            "accuracy": 0.3534883720930233,
+            "parameters": {
+                "learning_rate": 1.0,
+                "min_split_loss": 0.12,
+                "max_depth": 12
+            }
+        },
+        {
+            "accuracy": 0.3511627906976744,
+            "parameters": {
+                "learning_rate": 0.5,
+                "min_split_loss": 0.2,
+                "max_depth": 3
+            }
+        },
+        {
+            "accuracy": 0.3511627906976744,
+            "parameters": {
+                "learning_rate": 0.7000000000000001,
+                "min_split_loss": 0.2,
+                "max_depth": 15
+            }
+        },
+        {
+            "accuracy": 0.3511627906976744,
+            "parameters": {
+                "learning_rate": 0.8,
+                "min_split_loss": 0.04
+            }
+        },
+        {
+            "accuracy": 0.3511627906976744,
+            "parameters": {
+                "learning_rate": 0.9,
+                "max_depth": 9
+            }
+        },
+        {
+            "accuracy": 0.3511627906976744,
+            "parameters": {
+                "learning_rate": 0.9,
+                "min_split_loss": 0.04,
+                "max_depth": 9
+            }
+        },
+        {
+            "accuracy": 0.3511627906976744,
+            "parameters": {
+                "learning_rate": 0.9,
+                "min_split_loss": 0.12,
+                "max_depth": 3
+            }
+        },
+        {
+            "accuracy": 0.3511627906976744,
+            "parameters": {
+                "learning_rate": 0.9,
+                "min_split_loss": 0.12
+            }
+        },
+        {
+            "accuracy": 0.34883720930232553,
+            "parameters": {
+                "learning_rate": 0.5,
+                "min_split_loss": 0.16,
+                "max_depth": 3
+            }
+        },
+        {
+            "accuracy": 0.34883720930232553,
+            "parameters": {
+                "learning_rate": 0.6,
+                "min_split_loss": 0.12,
+                "max_depth": 3
+            }
+        },
+        {
+            "accuracy": 0.34883720930232553,
+            "parameters": {
+                "learning_rate": 0.7000000000000001,
+                "min_split_loss": 0.08,
+                "max_depth": 3
+            }
+        },
+        {
+            "accuracy": 0.34883720930232553,
+            "parameters": {
+                "learning_rate": 0.7000000000000001,
+                "min_split_loss": 0.2,
+                "max_depth": 12
+            }
+        },
+        {
+            "accuracy": 0.34883720930232553,
+            "parameters": {
+                "learning_rate": 0.9,
+                "min_split_loss": 0.04,
+                "max_depth": 12
+            }
+        },
+        {
+            "accuracy": 0.34883720930232553,
+            "parameters": {
+                "learning_rate": 0.9,
+                "min_split_loss": 0.08
+            }
+        },
+        {
+            "accuracy": 0.34883720930232553,
+            "parameters": {
+                "learning_rate": 0.9,
+                "min_split_loss": 0.12,
+                "max_depth": 9
+            }
+        },
+        {
+            "accuracy": 0.34883720930232553,
+            "parameters": {
+                "learning_rate": 0.9,
+                "min_split_loss": 0.2,
+                "max_depth": 3
+            }
+        },
+        {
+            "accuracy": 0.34883720930232553,
+            "parameters": {
+                "learning_rate": 1.0,
+                "min_split_loss": 0.12
+            }
+        },
+        {
+            "accuracy": 0.34651162790697676,
+            "parameters": {
+                "learning_rate": 0.5,
+                "max_depth": 3
+            }
+        },
+        {
+            "accuracy": 0.34651162790697676,
+            "parameters": {
+                "learning_rate": 0.5,
+                "min_split_loss": 0.12,
+                "max_depth": 3
+            }
+        },
+        {
+            "accuracy": 0.34651162790697676,
+            "parameters": {
+                "learning_rate": 0.6,
+                "min_split_loss": 0.16,
+                "max_depth": 3
+            }
+        },
+        {
+            "accuracy": 0.34651162790697676,
+            "parameters": {
+                "learning_rate": 0.8,
+                "max_depth": 3
+            }
+        },
+        {
+            "accuracy": 0.34651162790697676,
+            "parameters": {
+                "learning_rate": 0.9
+            }
+        },
+        {
+            "accuracy": 0.34651162790697676,
+            "parameters": {
+                "learning_rate": 0.9,
+                "min_split_loss": 0.04,
+                "max_depth": 15
+            }
+        },
+        {
+            "accuracy": 0.34651162790697676,
+            "parameters": {
+                "learning_rate": 0.9,
+                "min_split_loss": 0.08,
+                "max_depth": 3
+            }
+        },
+        {
+            "accuracy": 0.34651162790697676,
+            "parameters": {
+                "learning_rate": 0.9,
+                "min_split_loss": 0.12,
+                "max_depth": 15
+            }
+        },
+        {
+            "accuracy": 0.34651162790697676,
+            "parameters": {
+                "learning_rate": 0.9,
+                "min_split_loss": 0.16,
+                "max_depth": 3
+            }
+        },
+        {
+            "accuracy": 0.34651162790697676,
+            "parameters": {
+                "learning_rate": 1.0,
+                "max_depth": 9
+            }
+        },
+        {
+            "accuracy": 0.3441860465116279,
+            "parameters": {
+                "learning_rate": 0.5,
+                "min_split_loss": 0.08,
+                "max_depth": 3
+            }
+        },
+        {
+            "accuracy": 0.3441860465116279,
+            "parameters": {
+                "learning_rate": 0.8,
+                "min_split_loss": 0.04,
+                "max_depth": 3
+            }
+        },
+        {
+            "accuracy": 0.3441860465116279,
+            "parameters": {
+                "learning_rate": 0.8,
+                "min_split_loss": 0.08,
+                "max_depth": 3
+            }
+        },
+        {
+            "accuracy": 0.3441860465116279,
+            "parameters": {
+                "learning_rate": 0.8,
+                "min_split_loss": 0.12
+            }
+        },
+        {
+            "accuracy": 0.3441860465116279,
+            "parameters": {
+                "learning_rate": 0.9,
+                "min_split_loss": 0.16
+            }
+        },
+        {
+            "accuracy": 0.3441860465116279,
+            "parameters": {
+                "learning_rate": 0.9,
+                "min_split_loss": 0.2,
+                "max_depth": 15
+            }
+        },
+        {
+            "accuracy": 0.3441860465116279,
+            "parameters": {
+                "learning_rate": 1.0,
+                "min_split_loss": 0.16
+            }
+        },
+        {
+            "accuracy": 0.3418604651162791,
+            "parameters": {
+                "learning_rate": 0.7000000000000001,
+                "min_split_loss": 0.2,
+                "max_depth": 9
+            }
+        },
+        {
+            "accuracy": 0.3418604651162791,
+            "parameters": {
+                "learning_rate": 0.8,
+                "min_split_loss": 0.16,
+                "max_depth": 3
+            }
+        },
+        {
+            "accuracy": 0.3418604651162791,
+            "parameters": {
+                "learning_rate": 1.0,
+                "min_split_loss": 0.04,
+                "max_depth": 9
+            }
+        },
+        {
+            "accuracy": 0.3418604651162791,
+            "parameters": {
+                "learning_rate": 1.0,
+                "min_split_loss": 0.08
+            }
+        },
+        {
+            "accuracy": 0.3418604651162791,
+            "parameters": {
+                "learning_rate": 1.0,
+                "min_split_loss": 0.08,
+                "max_depth": 9
+            }
+        },
+        {
+            "accuracy": 0.3395348837209302,
+            "parameters": {
+                "learning_rate": 0.7000000000000001,
+                "min_split_loss": 0.16,
+                "max_depth": 3
+            }
+        },
+        {
+            "accuracy": 0.3395348837209302,
+            "parameters": {
+                "learning_rate": 0.7000000000000001,
+                "min_split_loss": 0.16
+            }
+        },
+        {
+            "accuracy": 0.3395348837209302,
+            "parameters": {
+                "learning_rate": 0.7000000000000001,
+                "min_split_loss": 0.2,
+                "max_depth": 3
+            }
+        },
+        {
+            "accuracy": 0.3395348837209302,
+            "parameters": {
+                "learning_rate": 0.9,
+                "min_split_loss": 0.2
+            }
+        },
+        {
+            "accuracy": 0.3395348837209302,
+            "parameters": {
+                "learning_rate": 1.0,
+                "min_split_loss": 0.2,
+                "max_depth": 15
+            }
+        },
+        {
+            "accuracy": 0.33720930232558144,
+            "parameters": {
+                "learning_rate": 1.0,
+                "min_split_loss": 0.08,
+                "max_depth": 3
+            }
+        },
+        {
+            "accuracy": 0.33488372093023255,
+            "parameters": {
+                "learning_rate": 0.7000000000000001,
+                "max_depth": 3
+            }
+        },
+        {
+            "accuracy": 0.33488372093023255,
+            "parameters": {
+                "learning_rate": 0.8,
+                "min_split_loss": 0.12,
+                "max_depth": 3
+            }
+        },
+        {
+            "accuracy": 0.33488372093023255,
+            "parameters": {
+                "learning_rate": 0.9,
+                "max_depth": 3
+            }
+        },
+        {
+            "accuracy": 0.33488372093023255,
+            "parameters": {
+                "learning_rate": 0.9,
+                "min_split_loss": 0.04
+            }
+        },
+        {
+            "accuracy": 0.33488372093023255,
+            "parameters": {
+                "learning_rate": 1.0,
+                "max_depth": 3
+            }
+        },
+        {
+            "accuracy": 0.33488372093023255,
+            "parameters": {
+                "learning_rate": 1.0,
+                "min_split_loss": 0.04
+            }
+        },
+        {
+            "accuracy": 0.33488372093023255,
+            "parameters": {
+                "learning_rate": 1.0,
+                "min_split_loss": 0.04,
+                "max_depth": 15
+            }
+        },
+        {
+            "accuracy": 0.33488372093023255,
+            "parameters": {
+                "learning_rate": 1.0,
+                "min_split_loss": 0.12,
+                "max_depth": 3
+            }
+        },
+        {
+            "accuracy": 0.33488372093023255,
+            "parameters": {
+                "learning_rate": 1.0,
+                "min_split_loss": 0.12,
+                "max_depth": 9
+            }
+        },
+        {
+            "accuracy": 0.33488372093023255,
+            "parameters": {
+                "learning_rate": 1.0,
+                "min_split_loss": 0.12,
+                "max_depth": 15
+            }
+        },
+        {
+            "accuracy": 0.33488372093023255,
+            "parameters": {
+                "learning_rate": 1.0,
+                "min_split_loss": 0.2
+            }
+        },
+        {
+            "accuracy": 0.33255813953488367,
+            "parameters": {
+                "learning_rate": 0.7000000000000001,
+                "min_split_loss": 0.04,
+                "max_depth": 3
+            }
+        },
+        {
+            "accuracy": 0.33255813953488367,
+            "parameters": {
+                "learning_rate": 0.8,
+                "min_split_loss": 0.2,
+                "max_depth": 3
+            }
+        },
+        {
+            "accuracy": 0.33255813953488367,
+            "parameters": {
+                "learning_rate": 0.8,
+                "min_split_loss": 0.2
+            }
+        },
+        {
+            "accuracy": 0.33255813953488367,
+            "parameters": {
+                "learning_rate": 0.9,
+                "min_split_loss": 0.2,
+                "max_depth": 12
+            }
+        },
+        {
+            "accuracy": 0.33255813953488367,
+            "parameters": {
+                "learning_rate": 1.0,
+                "min_split_loss": 0.16,
+                "max_depth": 12
+            }
+        },
+        {
+            "accuracy": 0.33255813953488367,
+            "parameters": {
+                "learning_rate": 1.0,
+                "min_split_loss": 0.2,
+                "max_depth": 3
+            }
+        },
+        {
+            "accuracy": 0.3302325581395349,
+            "parameters": {
+                "learning_rate": 1.0,
+                "min_split_loss": 0.16,
+                "max_depth": 3
+            }
+        },
+        {
+            "accuracy": 0.3302325581395349,
+            "parameters": {
+                "learning_rate": 1.0,
+                "min_split_loss": 0.16,
+                "max_depth": 9
+            }
+        },
+        {
+            "accuracy": 0.3302325581395349,
+            "parameters": {
+                "learning_rate": 1.0,
+                "min_split_loss": 0.16,
+                "max_depth": 15
+            }
+        },
+        {
+            "accuracy": 0.327906976744186,
+            "parameters": {
+                "learning_rate": 1.0,
+                "min_split_loss": 0.2,
+                "max_depth": 9
+            }
+        },
+        {
+            "accuracy": 0.32558139534883723,
+            "parameters": {
+                "learning_rate": 1.0,
+                "min_split_loss": 0.04,
+                "max_depth": 3
+            }
+        },
+        {
+            "accuracy": 0.32093023255813957,
+            "parameters": {
+                "learning_rate": 1.0,
+                "min_split_loss": 0.2,
+                "max_depth": 12
+            }
+        },
+        {
+            "accuracy": 0.313953488372093,
+            "parameters": {
+                "learning_rate": 0.1,
+                "max_depth": 3
+            }
+        },
+        {
+            "accuracy": 0.313953488372093,
+            "parameters": {
+                "learning_rate": 0.1,
+                "min_split_loss": 0.04,
+                "max_depth": 3
+            }
+        },
+        {
+            "accuracy": 0.313953488372093,
+            "parameters": {
+                "learning_rate": 0.1,
+                "min_split_loss": 0.08,
+                "max_depth": 3
+            }
+        },
+        {
+            "accuracy": 0.313953488372093,
+            "parameters": {
+                "learning_rate": 0.1,
+                "min_split_loss": 0.12,
+                "max_depth": 3
+            }
+        },
+        {
+            "accuracy": 0.313953488372093,
+            "parameters": {
+                "learning_rate": 0.1,
+                "min_split_loss": 0.16,
+                "max_depth": 3
+            }
+        },
+        {
+            "accuracy": 0.313953488372093,
+            "parameters": {
+                "learning_rate": 0.1,
+                "min_split_loss": 0.2,
+                "max_depth": 3
+            }
+        }
+    ]
+}

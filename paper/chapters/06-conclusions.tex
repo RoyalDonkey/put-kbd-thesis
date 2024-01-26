@@ -1,0 +1,121 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document}
+\chapter{Conclusions}\label{cha:conclusions}
+
+This section will briefly cover the main conclusions one can draw from the research results, propose ways to expand the studies in future work, and offer a retrospective of the thesis.  
+
+\section{Takeaways}
+
+\paragraph{High-quality, relevant data is essential}
+% more complicated models often lost to simpler ones - they can't substitute better data
+% "relevant": train similar to test
+% "worse" datasets give significantly worse results
+% CA_tb14 does better on main - even having a similar training setup helps significantly 
+The results indicate that the difference in results obtained using carefully prepared, high-quality data and less deliberate recordings is very significant. This is best exemplified by how much higher accuracies are achieved when the Main dataset is used. The challenge of dealing with worse data quality is not overcome by using more complicated models, at least at the scale tested in this work.
+However, even when one cannot obtain data that closely reflects the attack scenario's circumstances, acquiring similar data (most importantly - from a similar keyboard) will significantly aid in making successful predictions.
+This can help make the training data more similar to the real-world keystrokes or help with tuning preprocessing techniques and other parameters. This is supported by models trained on CA\_tb14 performing significantly better when tested on Main, than any others when the training and testing data come from different recording configurations.
+
+
+\paragraph{The keyboard is crucial}
+% keyboard impacts the results more than anything else
+% make it clear that testing on different keyboards should be a thing, ESPECIALLY if the technique requires training
+All experimental results performed during this research point to the keyboard being the most critical factor in determining the success of the attack. Both in terms of how having prior access to relevant recordings impacts model efficiency and how easy the sounds are to classify.
+Generalizing from recordings of one keyboard to eavesdrop on another appears to be especially difficult (see Figure~\ref{fig:best_model_per_train_test}). 
+This is why the authors find it essential for all works in the field to report on how the developed models deal with this generalization. Learning on one keyboard and successfully applying this knowledge to another appears to be almost an entirely separate task.
+
+
+\paragraph{More is not always better} 
+% refer to the smaller windows/overlap thing (will have to be explained in cha:dataset), and how sometimes using fewer peaks gave better results (e.g. 1-NN fft on main: `th` was better than `thr`), but don't forget thr was the best overall
+One way this insight can be interpreted is that simpler models often achieve better results than more complicated ones.
+However, it is likely more interesting that even given the previously stated importance of good data, sometimes having 
+less of it can lead to better results. This phenomenon was observed in two aspects.
+First, the case study with overlapping data revealed that sometimes, having access to a strict subset of some larger collection can improve the overall results. In this scenario, even though all training and testing
+examples were effectively half of their original size, they might have been more distinguishable, leading to better performance (see Section~\ref{sec:dataset_peak_extraction}).
+The second is that in certain scenarios, even with a set model type and dataset, a higher accuracy is reached when the model
+is given fewer peaks to work with. For example, 1-NN, with FFT preprocessing on dataset Main, performed better when 
+using only \peaks{th} than with all \peaks{thr} at its disposal.
+Although must not be overlooked that this is not the common case, and all of the best results when a model was trained and
+tested on data from the same source, a solution using \peaks{thr} always achieved the best accuracy.
+
+\paragraph{Different models, different tastes}
+% need to test/experiment with preprocessings to find the best one
+% the same idea for datasets and their preference
+% when models this simple are discussed - no generally best solution
+This is likely the key insight of Chapter~\ref{cha:results}. Not only does a model's performance vary between datasets,
+but the choice of the data also affects how well it responds to particular preprocessing techniques.
+The intensity of this phenomenon does not appear to be consistent.
+Moreover, particular types of data are better suited to be used with certain preprocessing techniques.
+Thus, experimentation with different 
+combinations of models and preprocessing techniques is needed to determine the best solution for a given scenario.
+When models this simple are discussed, no single winner can be proclaimed. The order of the best approaches
+changes noticeably depending on training and testing data. Some claims can be made (like, e.g., that Logistic
+Regression is better suited to the task than Naive Bayes), but the conducted research cannot point to a single best
+approach to classifying keyboard acoustic emanations.
+
+
+\section{Future work}
+% - explore how different microphones influence acc (focus on it more)
+% - explore how different keyboards influence acc (focus on it more)
+% - detailed look at typing style
+% - try to absolutely push the limit - anechoic chamber, super careful typing, very loud  keyboard - to serve as a standardized benchmark, especially useful when single keypresses are concerned
+% - train on multiple keyboards, test on one from OUTSIDE of train dataset - see if that improves performance, even if the test keyboard was very different
+% - how do different neighborhoods of peak in .wav file influence acc, and how is it connected to the speed of typing in dataset
+% - automated peak detection in .wav - adjusting window parameters, or getting rid of them altogether (similar to "FFT energy levels" used by other works)
+% - possible usage of NLP for better performance
+% - testing preventative measures
+This work focused on examining various techniques and factors impacting their performance when classifying keyboard acoustic emanations. 
+A closer look into any single of those factors, like the keyboard and microphone used or the typist's writing style
+could further the understanding of the topic. 
+Developing a standardized dataset under highly controlled conditions would be another helpful asset. 
+Such recordings could be conducted in an anechoic chamber with a consistent typing style (perhaps using some
+\textit{quiet} machine to repeatedly press the keys) might serve as a benchmark and a means to attempt to push performance metrics to the highest
+reachable values.
+
+One configuration of training and testing data the authors did not experiment with was training on multiple 
+keyboards and then testing on ones from outside of this training set. This could reveal a model's ability to
+generalize and whether having access to more data helps to accomplish the task. Various combinations of keyboards 
+in training and testing should be investigated. What happens if the training keyboards are less similar to the ones being tested? Can the tradeoff between data volume and similarity be quantified?
+
+This thesis used a straightforward way of extracting keystroke peaks from the entire recording (see Section~\ref{sec:dataset_peak_extraction}
+for what a peak is and the explanation of the method). There seems to be very little work being done to find
+better methods of accomplishing this or exploring the impact of different parameters on their effectiveness. 
+The influence of "window sizes" on the success of an attack in relation to typing speed would be of particular interest. 
+Additionally, comparing methods that have access to the precise timing of the keystroke and ones bereft of this 
+information, which instead depends on energy levels or similar measures, could allow a more fair examination of different 
+techniques.
+
+Different heuristics and language properties could be experimented with to see their impact on the performance of the 
+entire pipeline. These could range from Natural Language Processing tools to correct character predictions or general
+language statistics when conversational text is being eavesdropped on to incorporating the timing information between 
+keystrokes and the keyboard layout to aid the model in predicting. 
+
+Preventative measures are regularly mentioned in papers discussing keyboard acoustic emanations, but the proposed 
+models are rarely tested against them (the work exploring this in the most detail is \cite{defenses2018}).
+An approach's capability to operate despite those techniques being at play would be valuable information when
+evaluating its applicability to attacks.
+
+
+% I really liked the section "Potential problems" in the GISMO paper - maybe we could do something like that here
+% Potential problems:
+% - manual window size
+% - uncontrolled conditions (is it a problem though? That might just be a more realistic assumption)
+% - typing style + one person per dataset
+% - emotions influence the typing style
+% - dataset volume
+% - no testing against preventative measures
+% Currently, I decided against doing this - a lot would be repeated from future work, and the supervisor should be consulted on whether this is a good idea
+
+% DONE? - one of the last things to write in the entire paper
+\section{Closing remarks}
+% explored/highlighted/considered
+% 
+This work explored a range of supervised learning methods in the domain of classifying keyboard acoustic emanations.
+They were tested on various datasets using different preprocessing techniques, achieving
+results in line with other works in the area. Several insights into the factors contributing to
+the performance of attacks on keyboard acoustic emanations were found experimentally. The most significant of these
+insights is that the keyboard is the most critical factor in the attack's success and that there is no
+best general approach. There is ample room for further field studies, with many steps of the methods and
+potential countermeasures being relatively unexplored.
+
+\end{document}

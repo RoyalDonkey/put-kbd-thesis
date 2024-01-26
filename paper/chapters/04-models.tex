@@ -1,0 +1,225 @@
+\documentclass[../main.tex]{subfiles}
+
+% What to include when writing about a model
+% - a citation of landmark paper(s) about the model
+% - at least a very basic explanation of how it works 
+% - why we used it, some (dis)advantages
+% - what implementation/configuration/architecture we used
+
+\begin{document}
+
+% DONE: BW
+\chapter{Models}
+\label{cha:models}
+% Perhaps a bit of an intro here - why we didn't choose some other models,
+% MUST mention recent AI hot topics - transformers, GPT, etc. 
+% Why did we not use any of them?
+
+
+% DON'T FORGET TO DISCUSS WHAT THIS CHAPTER WILL COVER - a discussion of every model used in the experiments
+% these models are: relatively simple, can be trained on consumer hardware pretty fast, used in previous works, can be easily configured to work with our data, can perform inference in a short time given limited resources -- more threatening in an attack scenario
+\label{sec:models_intro}
+This chapter discusses every model type used in this thesis, its possible weaknesses or drawbacks, configuration details, and previous papers that used them (if any). All the discussed models have a few key similarities: 
+\begin{enumerate}
+    \item They are relatively simple in their usage, allowing for easier configuration to work with our data,
+    \item Their inference time is short, making the threat of using the intercepted data more imminent,
+    \item They do not require much computational resources, and as such it was possible to train many model instances to explore how different variables impact their performance.
+\end{enumerate}
+
+Even though in recent months many flavors of generative AI have reached new heights in terms of popularity and widespread usage, transformers were not chosen as a potential model to classify keys from recordings. This thesis explores different approaches instead of focusing on one extensive technique. An essential factor in model selection was ease and speed of training. Having the ability to compare with models used by other papers was also a relevant factor.
+
+% model instance != model type - when discussing e.g. SVM in this paper we are talking about, a machine learning tool/technique. Experiments had  different model instances,  identified by the dataset used for training, type of peaks, and the preprocessing technique
+% Each model was tested on all datasets, but the peak type and preprocessing always matched the training configuration
+% every approach was a supervised learning technique -- combine this with the discussion of "model type" to explain what constitutes a model
+It is also important to establish the difference between the model's \textit{type} and its \textit{instance}. For the purposes of this thesis, a model's type is an algorithm or supervised learning technique that infers concepts of a class based on a training set of examples and can predict the class of a previously unseen object. Whereas a model instance is created when a learning algorithm is applied -- trained on a specific part of the dataset (determined by the recording configuration and extracted peaks) with a predefined preprocessing, e.g. model instance \verb|A = (naive_bayes, main, t-r, fft)| is different compared to model instance \verb|B = (naive_bayes, main, thr, mfcc)| even though they have the same model type, they differ in chosen peaks and preprocess technique.
+Below, the six model types used in this thesis to classify keyboard acoustic emanations are listed, together with the section in which they are covered in this chapter:
+\begin{multicols}{2}
+    \begin{itemize}
+        \item k-Nearest Neighbors (k equal to 1) (Section~\ref{sec:models_knn}),
+        \item Logistic Regression (Section~\ref{sec:models_logistic_regression}),
+        \item Naive Bayes (Section~\ref{sec:models_naive_bayes}),
+        \item Recurrent Neural Networks (Section~\ref{sec:models_rnn}),
+        \item Support Vector Machines (Section~\ref{sec:models_support_vector_machines}),
+        \item Gradient-boosted trees (XGBoost) (Section~\ref{sec:models_xgboost}).
+    \end{itemize}
+\end{multicols}
+
+Each model was tested on all datasets, but the peak type and preprocessing always matched the training configuration.
+
+
+
+% DONE: PK
+\section{k-Nearest Neighbors}
+\label{sec:models_knn}
+K-Nearest Neighbors (k-NN) is one of the oldest and most common classification algorithms, first described%
+\footnote{The name "k-NN" was not yet established at that point in history.} in 1951
+by E.\ Fix and J.\ Hodges \cite{knn1951} and later expanded by T.\ M.\ Cover and
+P.\ E.\ Hart in \cite{nnpatternclassification1967}, who proved that the error of
+the method has a general upper-bound equal to twice the value of the Bayes error,
+assuming a large sample. A more specific upper-bound can be found with the formula:
+\begin{equation}
+    R^* (2 - MR^*/(M-1))
+\end{equation}
+where $R^*$ is the Bayes error, and $M$ is the number of decision classes.
+
+k-NN works in a straightforward way: it assigns a query point to the majority class among its $k$ nearest neighbors. The neighborhood is usually defined with a distance function (or a \emph{similarity} function -- the inverse concept of the former).
+
+A major weakness of k-NN is dealing with high-dimensional data. As the number of dimensions increases, the distances between points approach a common average, effectively diminishing the usefulness of thusly defined neighborhoods.
+This can constitute a severe problem with as few as 15 dimensions \cite{whenisnn1997}.
+
+\paragraph{Model configuration}
+This work uses scikitlearn's \verb`KNeighborsClassifier` implementation of k-NN.
+The model was tested for $k$ equal to 1, 3, or 5, of which 1 gave the most favorable
+results (this configuration is henceforth referred to as "1-NN"). No dimension-reducing
+techniques were applied to the data. For the metric calculating if an example belongs to a 
+given neighborhood, Euclidean distance and cosine similarity were considered. The former
+was chosen due to better results. This also happens to be the default in the scikitlearn
+implementation.
+
+% DONE: MG
+\section{Logistic Regression}
+\label{sec:models_logistic_regression}
+Three previous works using Linear Regression models to classify keyboard acoustic emanations were identified.
+"Keyboard Emanations in Remote Voice Calls: Password Leakage and Noise(less) Masking Defenses" \cite{defenses2018}
+and the two sister-works about the "Skype \& Type" attack \cite{skype2017, skype2019}.
+In all three, this type of model was among the best-performing techniques, making it an early candidate
+for consideration in this work.
+
+Logistic regression has deep roots in statistical modeling \cite{logistic_regression_cramer2002origins}.
+In its basic form, logistic regression fits a logistic curve to data with a binary outcome variable
+\cite{hosmer2013applied_logistic_regression}. To make calculations easier and allow for the use of a
+wide range of mathematical tools and optimization techniques, the data undergoes the logit transformation (see Equation~\ref{eq:logit_transformation}, where $p$ is the outcome variable),
+which maps values from $[0,1]$ to $(-\infty, +\infty)$
+\begin{equation}
+    \text{log-odds} = \log{\frac{p}{1-p}}
+    \label{eq:logit_transformation}
+\end{equation}
+A line is then fitted to the samples in the new space. The samples are projected onto the line. Both the line and the points are then transformed back to the original space (where their values of the outcome variable are in the $[0, 1]$ range) to calculate the likelihood of the data given the parameters of the line (which becomes a logistic curve in this space) by multiplying the resulting probabilities. The procedure is repeated using optimization techniques, and the line parameters giving the maximum likelihood are selected as the model.
+
+\paragraph{Model configuration}
+
+Every result reported in this thesis for Logistic Regression was obtained using scikit-learn's \cite{scikit-learn} \verb|sklearn.linear_model.LogisticRegression|. The multiclass nature of the classification problem was handled using the \verb|ovr| mode (see Section~\ref{sec:models_support_vector_machines} about Support Vector Machines for an explanation), and the default \verb|lbfgs| solver was used, with a limit of 10000 iterations.
+
+
+% DONE: BW
+% DONE: BW - add citations for NB
+\section{Naive Bayes}
+\label{sec:models_naive_bayes}
+% used implementation: sklearn.naive_bayes.GausianNB: https://scikit-learn.org/stable/modules/generated/sklearn.naive_bayes.GaussianNB.html#sklearn.naive_bayes.GaussianNB - justify the choice
+% popular paper about practical aspects of Naive Bayes: An empirical study of the naive Bayes classifier https://sites.cc.gatech.edu/home/isbell/classes/reading/papers/Rish.pdf
+
+% briefly describe & why we chose it
+Naive Bayes (NB) is a prevalent, basic model that derives its formulation from Bayes' Theorem \cite{naive_bayes_main}. It heavily relies on the assumption that features are independent, which is usually not the case. Nevertheless, it often performs well \cite{naive_bayes_application_med, naive_bayes_application_soil} without a guarantee that this assumption is met.
+This model was chosen in experiments of this thesis as a reference point to other, more sophisticated ones. Also, despite NB's popularity and ease of use, no other publication was found that used NB as a classification of keyboard acoustic emanations.  
+
+% more details about calculations / nature of this algorithm 
+In principle, NB works by simplifying conditional probabilities $p(C_k | \textbf{x})$ that given a vector of features $\textbf{x}$ describing an object, it belongs to class $C_k$. By rewriting the probability using Bayes' theorem and then utilizing the \textit{naive} assumption of independence between features the final equation is obtained: $p(C_k | \textbf{x}) \propto p(C_k) \Pi_{i=1}^np(x_i | C_k)$, where $x_i$ are features of feature vector $\textbf{x}$ and $a \propto b$ means that $a$ is proportional to $b$. It is not necessary to know the precise value of $p(C_k | \textbf{x})$ for each class; their respective order is sufficient to find the most likely option.
+
+% explain how the model is able to handle numerical data,
+% useful link https://www.cs.cornell.edu/courses/cs4780/2018fa/lectures/lecturenote05.html
+Due to the nature of the model, a small adjustment needs to be made for it to handle continuous features instead of categorical ones. This is done by using \textit{Gaussian Naive Bayes}, which uses a Gaussian probability distribution to estimate $p(x_i | C_k)$. From known values of every feature of examples belonging to a class, mean and standard deviation ($\mu$ and $\sigma$) are calculated. These values are used to construct a Gaussian probability distribution $\mathcal{N}(\mu, \sigma^2)$. Such distributions are built for every (feature, class) pair and represent the likelihood that a record from a particular class would have a certain value of the considered feature. When a new example is to be classified, the value of $p(x_i | C_k)$ is estimated to equal the value of the appropriate distribution at the point determined by $x_i$. This naturally means that the performance of the model depends on how closely the real-world distributions of feature value follow the normal distribution.
+
+% implemented via scikit-learn
+\paragraph{Model configuration}
+All experiments with Naive Bayes were conducted using its implementation (\verb|GaussianNB|) in scikit-learn's \verb|sklearn.naive_bayes| module \cite{scikit-learn} with default configuration.
+
+% DONE: MG
+\section{Recurrent Neural Network}
+\label{sec:models_rnn}
+
+The authors of this thesis are aware of two previous works utilizing Recurrent Neural Networks (RNNs) in the context
+of classifying keyboard acoustic emanations: "Robust keystroke transcription from the acoustic side-channel"
+\cite{slater2019robust}, and "Keyboard snooping from mobile phone arrays with mixed convolutional and recurrent neural
+networks" \cite{giallanza2019keyboard_snooping}. Both use a convolutional neural network to extract
+keystrokes from an audio signal and then classify the output using an RNN. Because of the nature of the data 
+considered in this thesis (explained in Chapter~\ref{cha:dataset}), there is no need for model-driven feature extraction.
+Therefore, a Recurrent Neural Network is applied to the sounds of keystroke peaks, acquired independently.
+RNNs are renowned for their capability to learn from sequential data \cite{elman1990finding, yu2019rnn_review},
+making this model type a strong candidate for classifying the sound signals of keyboard acoustic emanations.
+
+\paragraph{Model configuration}
+PyTorch 2.0.1 \cite{paszke2019pytorch} is used for all dataset processing and model construction necessary to facilitate a neural network in all scenarios considered throughout this research. All experiments used the same architecture consisting of a single 1-layer Elman RNN \cite{elman1990finding}, implemented with \verb|torch.nn.RNN|, and a single dense output layer, transforming the output to a vector with as many values as there are considered classes -- 43. In total, there are 581,371 trainable parameters in the model. The training was conducted over 20 epochs, with batch size 8, a learning rate of 0.002, and the SGD optimizer, using the cross entropy loss function.
+
+
+% DONE: MG
+\section{Support Vector Machines} 
+\label{sec:models_support_vector_machines}
+Support Vector Machines were tested in \cite{skype2017}, where they achieved an accuracy of over 90\%. SVMs were not the main focus of this thesis due to being slightly outperformed by Logistic Regression models. This brief comparison conducted while selecting the model for the "Skype \& Type" attack is the sole mention of SVMs used to classify keyboard acoustic emanations found while researching for this thesis.
+
+The term "Support Vector \textit{Networks}" was first introduced in \cite{cortesvapnik1995svm}. This work builds upon~\cite{vapnik1992protosvm}, whose authors proposed an algorithm for identifying decision boundaries in separable data. Those boundaries maximize the margin between objects from two classes. The successor paper \cite{cortesvapnik1995svm} generalizes the method so that it can be applied to non-separable training data.
+
+
+\paragraph{Model configuration}
+
+All of the relevant experiments are conducted using the implementation of Support Vector Machines provided by
+scikit-learn \cite{scikit-learn}. It features two approaches to handling multiclass classification
+\begin{itemize}
+    \item "one versus one" (\verb|decision_function_shape='ovo'|) - training a dedicated classifier to
+    distinguish between each pair of classes
+    \item "one versus rest" (\verb|decision_function_shape='ovr'|) - training a dedicated classifier to judge the assignment
+    of a sample to any single given class
+\end{itemize}
+\verb|sklearn.svm.SVC| classifier was chosen, with the "one versus one" approach
+due to achieving the best results in preliminary testing.
+
+SVMs finding decision boundaries that maximize the margin between classes was found by the authors to be particularly 
+appealing for the application of classifying keyboard acoustic emanations.
+This reduces overfitting \cite{cortesvapnik1995svm}, and in the case of classifying keyboard acoustic emanations, might allow to more successfully apply a model
+trained on data with a particular set of assumptions (typing style, microphone used, etc.)
+to data that does not strictly conform to them.
+% support for the anit-overfitting claim is on page 14 of the cited paper
+% The below is prime for removal due to being too "optimistic" or "unscientific"
+\cite{cortesvapnik1995svm} achieved then state-of-the-art results in optical character recognition, being able to
+recognize digits produced with different writing styles. This might lead one to believe that SVMs might be capable
+of overcoming some of the challenges arising in this scenario.
+
+% The paper shouldn't cover performance model by model, as per The Supervisor.
+% Instead, it should flow with other factors (keyboards, preprocessing, etc.),
+% within which the models are compared, for easier consumption
+
+% DONE: PK
+\section{XGBoost}
+\label{sec:models_xgboost}
+XGBoost~\cite{xgboost} is a popular software library implementing gradient boosted trees (GBT). GBT is an ensemble model that starts from a single tree and adds subsequent ones tuned to minimize the value of some loss function, e.g., Mean Squared Error, on the entire model. This minimization is done by making a prediction and training the next tree on a modified version of the dataset in which the target values for each data point are set to the residuals taken from the prediction. This process continues until the loss function is appropriately low or the number of trees reaches some predefined threshold \cite{surveyofensemblelearning2022}.
+
+XGBoost introduces a few enhancements over traditional GBT. A regularization term is added to the loss function definition, which penalizes overly complex trees in an attempt to prevent overfitting \cite{surveyofensemblelearning2022}:
+\begin{equation}
+\Omega(h) = \gamma T + \frac{1}{2}\lambda||\omega||^2,
+\end{equation}
+where $T$ denotes the number of leaves in the considered tree, and $\omega$ represents the output of the tree. The following constants are user-defined and control the behavior of the model:
+\begin{description}
+    \item[$\gamma$] -- minimum loss reduction required to split a tree node,
+    \item[$\lambda$] -- penalty parameter.
+\end{description}
+Besides the regularization term, XGBoost provides two hyperparameters for fine-tuning the learning process: \emph{shrinkage} and \emph{column subsampling}. The former controls the relevance of newly added trees. It is analogical to a learning rate in other machine learning models. The latter randomly restricts the number of predictor variables visible to each tree. This mechanism reduces the probability of overfitting and constructing similar trees \cite{xgboostpaper2016}.
+
+\paragraph{Model configuration}
+One of the shortcomings of XGBoost is its vast number of hyperparameters, many of which are correlated. To alleviate the challenge posed by this multivariate meta-optimization problem, the authors of this thesis relied on a script\footnote{Available at \texttt{models/xgboost/optimizer.py}.} to exhaustively search through manually defined subsets of values for specific hyperparameters (grid search), which yielded a configuration presented in Table~\ref{tab:xgboost_parameters}, used by all XGBoost models showcased in this work.
+%DONE 3.01 podpisy (caption) tabel z góry, podpisy rysunków z doły
+\begin{table}[h]
+    \centering
+    \caption{XGBoost parameters \\
+    {\tiny (\url{https://xgboost.readthedocs.io/en/latest/parameter.html})}}
+    \begin{tabular}{lr}
+        \texttt{booster}              & \texttt{gbtree} \\
+        \texttt{learning\_rate}        & \texttt{0.3} \\
+        \texttt{min\_split\_loss}       & \texttt{0.2} \\
+        \texttt{max\_depth}            & \texttt{6} \\
+        \texttt{min\_child\_weight}     & \texttt{0.2} \\
+        \texttt{max\_delta\_step}       & \texttt{0.0} \\
+        \texttt{subsample}            & \texttt{1.0} \\
+        \texttt{sampling\_method}      & \texttt{uniform} \\
+        \texttt{reg\_lambda}           & \texttt{1.0} \\
+        \texttt{reg\_alpha}            & \texttt{0.0} \\
+        \texttt{tree\_method}          & \texttt{auto} \\
+        \texttt{process\_type}         & \texttt{default} \\
+        \texttt{grow\_policy}          & \texttt{depthwise} \\
+        \texttt{max\_leaves}           & \texttt{0} \\
+        \texttt{predictor}            & \texttt{auto} \\
+        \texttt{num\_parallel\_tree}    & \texttt{1} \\
+        \texttt{objective}            & \texttt{multi:softmax} \\
+        \texttt{eval\_metric}          & \texttt{["merror"]}
+    \end{tabular}
+    \label{tab:xgboost_parameters}
+\end{table}
+\end{document}

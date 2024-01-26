@@ -1,0 +1,5 @@
+*.model
+*.json
+*.log
+!evaluations.json
+!all_evaluations.json

@@ -1,0 +1,284 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document}
+% Explain basics regarding difficulty with obtaining datasets
+% how we decided to record it and justify our method 
+% - train and test size
+% DONE: MG
+\chapter{Dataset}
+\label{cha:dataset}
+
+This chapter will cover the process of data acquisition, feature extraction, and preprocessing techniques.
+All data used for experiments in this thesis was obtained by the authors themselves.
+Raw recordings in .wav format and .csv files obtained by extracting keystroke peaks (see Section~\ref{sec:dataset_peak_extraction}), as well as all of the code used to create and work with them, are publicly available in the repositories.
+It must be stated here that all recordings were conducted in "sessions". Each session consists
+of a typist repeatedly pressing a single key. The typing speed was not controlled in any special way.
+Examples from within a session were always used only in training or only in testing to avoid data leakage.
+Following the example of the seminal paper in the study of keyboard acoustic emanations \cite{og2004},
+every training session includes 100 keystrokes, and every test session -- 10.
+However, the list of recorded keys is expanded from 30 to 43 elements. These 43 keys represent the 26 lowercase letters
+of the English alphabet, the 10 Arabic numerals, and seven special characters: 
+\verb|,| (comma), \verb|-| (dash), \verb|.| (dot),  \verb|'| (quote), \verb|;| (semicolon), \verb|/| (forward slash), and space. Therefore, each of the five recorded datasets (discussed in Section~\ref{sec:dataset_recorded_datasets})
+includes 4300 keystrokes for training and 430 for testing.
+
+There are no established benchmarks, and the few available datasets became accessible too late in the research process or were incompatible with the goals of this work. 
+
+
+
+% Details about recdata, timing info, *.keys files, WAV format.
+% DONE: PK
+% DONE 2.1.2024 bardziej rozwinięte tytułu sekcji, nie może być samo recdata, bo to nic nie mówi; tak samo dalej bez skrót w stylu FFT - pełne rozwinięcie i najlepiej kontekst wykorzystania
+\section{Recording software}
+\label{sec:dataset_recdata}
+The datasets were recorded using a self-written \texttt{recdata} program. The program uses the SDL2 library
+to detect input devices available on the system, lets the user choose their microphone, and then begins
+recording, either a specified number of keystrokes or until the user terminates it manually. While recording,
+the program measures the elapsed wall clock time and, upon each keypress, writes the time offset in seconds
+and the name of the key into a .keys text file, separated by a single space. The following is a
+simple example of pressing the keys "a", "b", "c", "d" and "e":
+\begin{verbatim}
+3.259089 a
+4.321060 b
+4.721019 c
+5.824969 d
+7.442135 e
+\end{verbatim}
+
+The sound registered by the selected microphone is exported as a WAV file containing PCM-signed 16-bit integer
+data with a single-channel (mono) and a 44100Hz sample rate. For the encoding, we used the TinyWav library
+\cite{TinyWav}. Note the decision to exclusively use mono data -- this was done to ensure no TDoA information or similar position-based characteristics could be exploited by a learning model.
+
+To sum up, each execution of the \texttt{recdata} program presents the user with two output files:
+\begin{itemize}
+    \item a .wav file containing the sound of typing,
+    \item a .keys file containing the keypresses and their offsets within the recording.
+\end{itemize}
+
+% explain peak extraction, radius of peaks, elaborate on (touch-hit-release); touch on overlaps
+% DONE: MG
+\section{Peak extraction}
+\label{sec:dataset_peak_extraction}
+Thanks to the information provided by the data acquisition software used (more details in Section~\ref{sec:dataset_recdata}), the location of a keystroke being registered by a computer within a longer recording is known.
+However, this singular point in time is not enough to perform any classification. A section capturing
+the characteristics of an entire keystroke sound must be extracted from the recording. A decision was made not to use
+any model-driven feature extraction, energy level calculation, or dynamic modification of parameters -- adding
+more variables to test for during the experiments would significantly increase the scope of the thesis and
+would make sharing the numeric representation of the data more difficult. Moreover, devising a way for reliable keystroke extraction was not the objective of this work.
+
+It is commonly accepted that a keystroke sound contains three distinct peaks \cite{og2004, harrison2023practical, revisited2005},
+corresponding to particularly noisy moments during the act of pressing a key:
+\begin{itemize}
+    \item touch \verb|"t"| -- the moment a finger first hits a key,
+    \item hit \verb|"h"| -- when the key hits the keyboard's plate,
+    \item release \verb|"r"| -- the key reacting to the force that had been applied to it leaving.
+\end{itemize}
+The following is an explanation of how the task of extracting keystroke peaks is accomplished in this work.
+The relevant code can be found in \verb|recdata/wav_processing.py| 
+All of the below applies to a single keystroke; no interactions between keystrokes are taken into account in this thesis.
+The time when the keystroke was registered by a computer is known thanks to the associated .keys file.
+A section is extracted from the recording, which will be searched for the three peaks.
+This larger keystroke window is set to contain 10 milliseconds of the recording before the keypress was registered and 90 milliseconds afterward. These values were selected because existing papers usually state the sound of a keystroke
+to last for about 100 ms \cite{og2004, dict2006, skype2019, revisited2005}.
+It is this 100 ms section from which touch, hit, and release peaks are extracted.
+For each peak, a 4 ms fragment of the recording is selected, symmetrically spaced around a local maximum
+within the signal values -- 2 ms before and 2 ms after. It is enforced that the center of a "peak window" (the local
+maximum introduced before) does not lie within a different peak window. Therefore, one peak is always associated with the 
+largest value within the 100 ms keystroke window. The next two are found by iterating through the samples
+from the keystroke window, sorted in decreasing order. If the position of the sample within the original,
+unsorted signal is not within an already-found peak window, it is accepted as the next peak.
+The peaks are assigned as touch, hit, or release based on their location within the signal -- the one that occurs
+the earliest is considered the touch peak, and so on.
+As a consequence of the recording being done with a 44100 Hz sample rate and the implementation of \verb|recdata/wav_processing.py|, a single 4 ms peak window is represented by 176 16-bit signed integers. 
+
+An astute reader will notice that this implementation offers no guarantee that peak windows do not overlap.
+This might be suboptimal for maximizing model performance, but this trait was preserved, for the metrics
+to remain more realistic and comparable with scenarios that do not have access to information about the timing
+of the keystroke, or have the luxury of performing offline feature extraction.
+Overlapping data poses an additional challenge to the approaches tested in this thesis. 
+When one dataset was prepared (which was later dropped due to its poor quality), the authors noticed that 
+it included speedy typing, so some non-rigorous tests were conducted with a tweaked version of feature extraction, 
+which made the peak windows extend for 1 ms (rather than 2) in both directions from the location of a local maximum.\label{par:g213_poor_quality}
+This led to effectively reducing the available data in half. However, no significant drop in performance was observed
+in this scenario, and sometimes improvement occurred. 
+
+There is no universally agreed-upon method for extracting keystroke sounds from a recording. It is an area with much room for investigation, and the authors hope this new approach might bring some new ideas.
+
+
+
+% simple intro e.g. in other papers preprocessings are used etc.
+% DONE: BW (thanks to help of MG)
+\section{Preprocessing} \label{sec:dataset_preprocessing}
+In a vast majority of papers \cite{og2004, dict2006, skype2019}, many different preprocessing techniques are used to extract features from raw data, making it easier for models to predict pressed keys.
+This section will cover the three preprocessing techniques used across experiments in this thesis (raw, FFT, MFCC) and touch on continuous wavelet transform, a novel approach to the task advocated for by one work in the domain.
+% DONE: BW, let the reader know, that raw exists and is explained 
+% fyi, full details of the WAV format we use are explained in recdata section earlier
+% checked - simple raw paragraph
+\subsection{raw}
+This kind of preprocessing means that no transformation of any kind was applied to the signal. By convention, it is referred to as \textit{raw}, because it preserves the sounds' original frame values.
+
+% DONE: BW
+% DONE: BW, find correct citations for FFT usage/applications and FFT guide
+% checked: fft section
+\subsection{Fast Fourier Transform}
+\label{sec:dataset_fft}
+%what it is, briefly
+
+Fast Fourier Transform (FFT) is an algorithm that quickly computes Fourier Coefficients of a vector of complex numbers, transforming a signal from its original domain to the frequency domain. Awareness about such algorithms in the modern age was raised by a famous paper in 1965, co-authored by James Cooley and John Tukey \cite{fft_1965_algorithm}. The authors' names were then used to refer to the proposed recursive calculation schema as the Cooley-Tukey algorithm. However, it had later been shown that similar algorithms had been devised earlier but remained less known, even by Gauss as early as 1805 \cite{fft_gauss}. 
+
+The main idea about the Fourier Transform is that it decomposes a signal into a series of slightly offset sinusoids with different amplitudes, which, if added together, sum up to the original signal. The Fourier transform is a topic of much scientific discourse, where many variables need to be taken into account, especially in the case of FFT, which adds another layer of factors such as the nature of the signal (continuous/discrete), if it is periodic or not, number of taken samples, etc. 
+
+% why is it popular
+This procedure has a wide range of applications, from medicine \cite{fft_examples_medical} through physics to what is most important for this thesis -- signal processing \cite{fft_examples_signal}. The magnitude of each Fourier coefficient gives the amplitude of a particular sinusoid, whereas the complex part represents a phase offset. Such representation makes it easy to reduce noise in signal or, like in the case of this thesis, expresses features in a (possibly) more understandable way for the model.
+
+
+To compute the Fourier Transform for a finite number of samples in a signal, represented as $x_0, \dots, x_{n-1}$ (where every $x_i$ is a complex number -- in the case of the data used in this thesis, an integer) one can use a formula for Discrete Fourier Transform (DFT) \cite{fft_source_math}:
+% DONE: make it bigger
+{\large
+% to adjust size the easiest: use font sizes found in the reference table from this link: https://www.overleaf.com/learn/latex/Font_sizes%2C_families%2C_and_styles
+\[
+    X_k = \sum_{m=0}^{n-1}x_{m}e^{-i2\pi km/n} \quad k = 0, \dots, n-1
+\]
+}
+Computing those values directly has a $\mathcal{O}(n^2)$ complexity. Fortunately, the Cooley-Tukey algorithm \cite{fft_1965_algorithm}, has a complexity of $\mathcal{O}( n\log{n})$. They used the \textit{Divide and conquer} approach to solve smaller DFT problems and reuse calculated sums for other subproblems.
+
+% different approaches
+FFT returns an array of Fourier coefficients, which are complex numbers. There are several different approaches to extracting the final value from it, e.g., by taking only real (like in \cite{dict2006}) or imaginary parts of every number or by calculating their magnitudes. The last option has been chosen in this thesis. The whole array of coefficients is included in the final preprocessed list despite it being symmetric. The main reason is that initial results favored that approach over cutting the array in half. 
+
+% we used scipy library, half/full spectrum
+As for implementation details, fft from the scipy library \cite{scipy} was the final choice for this thesis (it is faster than fft provided by numpy \cite{numpy}). For every calculated complex number, a magnitude is calculated, yielding a final list. 
+
+% DONE: PK
+\subsection{Mel-frequency Cepstral Coefficients}
+\label{sec:dataset_mfcc}
+Mel-frequency cepstral coefficients (MFCC) is a feature extraction technique specifically targeted for human speech. While originally devised for the task of speech recognition, it sees frequent use in neighboring types of problems, such as speaker recognition \cite{kinnunen2003spectral} and classification of keyboard acoustic emanations (almost universally used, or at least acknowledged, since \cite{revisited2005}).
+
+
+The main contributing factors to MFCC's wide adoption in speech recognition systems seem to be
+its sufficient performance, robustness to noise, and availability of efficient implementations \cite{mfccbook2012}. 
+The word "sufficient" is used here because there are many moving parts to MFCC and similar metrics,
+and the state-of-the-art is often solely dictated by experimental results without proper theoretical
+background \cite{kinnunen2003spectral}.
+
+MFCC is computed in several steps. First, the raw audio is split into small windows, and the frequency
+domain of each window is calculated using DFT. Then, windows are passed one-by-one through a filterbank
+to keep relevant frequencies and reduce the rest. The filterbank consists of a series of triangular
+filters linearly-spaced on the mel scale (which translates to logarithmic placement on the frequency scale).
+Other types of filters can also be used, e.g., the Hamming filter.
+Finally, the cepstral coefficients of each window are computed by passing it through a logarithm function and
+applying a linear transformation function. Discrete Cosine Transform (DCT) is by far the most popular
+choice for this function \cite{mfccbook2012}.
+
+As mentioned earlier, MFCC has many moving parts that can be adjusted, the most important ones being
+the window size, the type and placement of the filters in the filterbank and the linear transformation
+function. The accuracy of learning models can vary greatly based on the setting of these parameters.
+This thesis uses the \verb`python_speech_features` module's implementation of MFCC, which, as of writing,
+uses the following values as defaults \cite{pythonspeechfeatures}:
+\begin{verbatim}
+    def mfcc(signal, samplerate=16000, winlen=0.025, winstep=0.01, numcep=13, 
+         nfilt=26, nfft=None, lowfreq=0, highfreq=None, preemph=0.97,
+         ceplifter=22, appendEnergy=True, winfunc=lambda x:numpy.ones((x, )))
+\end{verbatim}
+During the experiments stage, it was shown that making the following adjustments resulted in increased accuracy of every tested model on the Main dataset:
+\begin{verbatim}
+    samplerate: 16000 -> 44100,
+    numcep:        13 -> 16,
+    nfilt:         18 -> 26,
+    highfreq:    None -> 10000,
+    preemph:     0.97 -> 0,
+    ceplifter:     22 -> 18
+\end{verbatim}
+This configuration was picked using a manual method of fixing all but one parameter, finding its optimum, moving onto the next one, and repeating until no further improvements were found.
+The differences, evaluated for \peaks{thr}, ranged from around 5\% (1-NN, Linear Regression) to 10\% (SVM, XGBoost), and in the case of RNN, a whopping 31\% (after 20 epochs).
+
+% DONE: PK (wavelet transform)
+% DONE: consider moving parts of this to future work, OR turning this into a full literature review
+%       and only referring to some conclusions here. [EDIT PK 14.01.2024] Consideration rejected for the sake of finishing sooner.
+\subsection{Continuous Wavelet Transform}
+\label{sec:dataset_wavelet}
+Among the works analyzed for the purpose of this thesis, there was one, "Keystroke transcription from
+acoustic emanations using continuous wavelet transform" that pioneered the use of \emph{Continuous Wavelet
+Transform} (CWT) as a processing technique \cite{wavelet2022}. The author argues it to be a superior
+choice for "impulsive signals such as keystrokes", due to the property of CWT to capture long-term
+information about low frequencies and sudden high-frequency oscillations, while also offering a sensible
+trade-off between the frequency and time domains. It is, therefore, hypothesized to be a good middle ground between
+raw data (pure time domain) and FFT (pure frequency domain). The output of CWT is 3-dimensional, which is
+not compatible with most conventional machine learning models. As a remedy, the authors flatten the time
+dimension by taking its standard deviation. Mean and maximum functions were considered alongside standard
+deviation as well, but the latter was experimentally proven to be the most suitable \cite{wavelet2022}.
+
+CWT was not used in any of the experiments done for this thesis, due to its late discovery and time constraints.
+It certainly is an appealing option that calls for more extended research.
+
+% Discuss what this section will cover
+\section{Recorded datasets}
+\label{sec:dataset_recorded_datasets}
+This section will briefly discuss how each of the datasets was procured. Each of them contains a part used for training
+(100 keystrokes), and one for testing (10 keystrokes). They varied in what type of hardware was used (both keyboard
+and microphone), the typists (always one of the three authors), as well as the recording environment.
+Every dataset was recorded within a single contiguous sitting, using the \verb|recdata| program, running on
+arch-based Linux distributions.
+
+% DONE: MG kbd, PK mic
+\subsection{Main}
+\label{sec:dataset_main}
+
+This dataset was the first recorded. The keyboard was the CA-1406 KRYPTOPS from California Access,
+outfitted with Kailh Blue Switches.
+It is a full-size mechanical keyboard, the switches are loud and tactile. The board is on the heavy side, manufactured
+from hard plastic, without any dampening.
+All of these traits lead to very pronounced sounds of every key's switch triggering, the cap hitting the board, and 
+the mechanism releasing.
+
+The recording was done using the Blue Yeti microphone. It is a middle-end, Plug \& Play USB microphone with
+a 48kHz sample rate, 16-bit bit rate, and a frequency response of 20Hz--20kHz. During the recording,
+it was placed within a 20-centimeter range, facing the keyboard while in the cardioid polar pattern setting.
+No additional accessories, such as boom arms or pop filters, were used.
+
+
+All precautions the authors could afford to take were applied when making all of the recordings for this dataset.
+The keyboard was placed on a piece of thick fabric to minimize vibrations of the table and the keyboard itself,
+and the microphone was put close beside it, under a makeshift recording booth built from pillows and blankets,
+all within a relatively quiet room.
+Only the two devices and the typist's hands were inside this noise-insulating construction -- the keyboard and the
+microphone were connected to a laptop with cables that were passed through small gaps in the walls of the structure.
+Thanks to these measures, using the combination of the best microphone and the loudest keyboard, and employing a
+rather deliberate typing style, this dataset is of the highest quality among all recorded for this thesis.
+It served as the basis for building classifiers and was the only data at hand for a significant part of the research. 
+
+
+% DONE: PK
+\subsection{G213}
+\label{sec:dataset_g213}
+The second dataset, created after the implementation for all models, was roughly complete
+and the first results on the Main dataset were known, with the goal of challenging the trained
+classifiers with data coming from a different keyboard.
+This time, all keystrokes were recorded on the Logitech G213 Prodigy RGB Gaming Keyboard,
+with the stock Tactile Mech-Dome keyswitches. Despite its marketing, it is a membrane
+keyboard that tries to mimic the feel of a mechanical one. It is definitely louder than
+an average laptop or office model but far quieter and damper than CA-1406 KRYPTOPS.
+The recording was done with the Blue Yeti microphone in the same configuration as Main,
+in relatively silent home conditions, albeit with far less pedantic quality control.
+
+% DONE: PK
+\subsection{K3P}
+\label{sec:dataset_k3p}
+The third dataset was created in conditions identical to G213, except on the Keychron K3 Pro low-profile keyboard with Gateron Brown mechanical switches. The K3P is slightly louder than G213, but still far behind CA-1406 KRYPTOPS. Due to its more open, bare-bones build, the sound is not dampened by any surrounding frame and appears brighter than that of G213. 
+
+% DONE: BW 
+\subsection{MateBook14}
+\label{sec:dataset_matebook14}
+This dataset (sometimes referred to as \verb|mb14|) contains recordings of typing on a Huawei MateBook14 laptop captured with its onboard microphone. The membrane keyboard it is outfitted with is on the quieter side. Also, the generic built-in microphone did not help with the quality of recordings. At the same time, such a setup (built-in microphone and keyboard) represents what many potential victims will have in their home or work environment. It is thus worth investigating how models are going to perform in such a configuration of hardware. Note that neither the keyboard nor the microphone was reused in any other dataset.
+
+% DONE: MG
+\subsection{CA\_tb14}
+\label{sec:dataset_CA_tb14}
+The motivation of this dataset was to test the impact of the microphone used on the dataset. To this end, the recording configuration was carefully recreated from the Main dataset, the same keyboard was used, with the only significant change being the microphone. Due to logistic constraints, the only available microphone was the one built into the Lenovo ThinkBook 14 G2 ITL laptop. Hence, the dataset name is CA for the keyboard (CA-1406) and tb14 for the computer model. The information about the exact microphone model appears to be unavailable, but the drivers have been identified as "Tiger Lake-LP Smart Sound Technology Audio Controller".
+
+% DONE: BW - checked
+\subsection{All}
+\label{sec:dataset_all}
+This dataset merges all previous datasets; therefore, it is five times bigger than any of the others.
+This dataset was created to investigate the impact of more heterogeneous recordings from different keyboards and recorded using different microphones. It also allows examining how data volume influences an attack's success. 
+
+
+\end{document}
